@@ -15,6 +15,18 @@ const routes = [
         component: () => import('../views/user/ProductsView.vue'),
       },
       {
+        path: 'news-list',
+        component: () => import('../views/user/NewsList.vue'),
+      },
+      {
+        path: 'story',
+        component: () => import('../views/user/BrandStory.vue'),
+      },
+      {
+        path: 'contact-us',
+        component: () => import('../views/user/ContactUs.vue'),
+      },
+      {
         path: 'cart',
         component: () => import('../views/user/CartView.vue'),
       },

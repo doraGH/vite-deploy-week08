@@ -1,65 +1,72 @@
 <template>
-  <nav class="navbar navbar-expand-md navbar-light bg-light" ref="navbar">
-    <div class="container-fluid">
-      <Router-Link
-        class="nav-link fw-bolder text-dark fs-6"
-        aria-current="page"
-        to="/"
-      >
-        <img
-          src="/logoname.png"
-          alt=""
-          width="137"
-          height="70"
-          class="d-inline-block align-text-top"
-      /></Router-Link>
+  <header class="fixed-top">
+    <nav class="navbar navbar-expand-md navbar-light"
+    :class="{ 'pink-light': scrolled }" ref="navbar">
+      <div class="container-fluid d-flex">
+        <Router-Link
+          class="nav-link me-3"
+          aria-current="page" to="/" @click="closeNavbar">
+          <img src="../../assets/images/logo.svg"
+            alt="" width="247" height="70"
+            class="d-inline-block align-text-top"/>
+        </Router-Link>
+        <div class="d-flex justify-content-end navbar-qlink">
+          <RouterLink to="/login"
+          class="btn btn-sm">
+            <img src="../../assets/images/user.svg">
+          </RouterLink>
+          <RouterLink to="/cart"
+          class="btn btn-sm position-relative me-4">
+            <img src="../../assets/images/cart.svg" class="position-relative">
+            <span class="position-absolute top-0
+            start-100 translate-middle badge rounded-pill bg-danger">
+              9
+              <span class="visually-hidden">unread messages</span>
+            </span>
+          </RouterLink>
+          <button
+            class="navbar-toggler d-flex d-md-none flex-column justify-content-around"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            :class="{ collapsed: btnState }" @click="btnState = !btnState">
+            <span class="toggler-icon top-bar"></span>
+            <span class="toggler-icon middle-bar"></span>
+            <span class="toggler-icon bottom-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse"
+        id="navbarNav" ref="navbarNav" :class="{ hide: isHide }">
+          <div class="navbar-nav me-auto">
 
-      <button class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse"
-      id="navbarNav" ref="navbarNav" :class="{ hide: isHide }">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <RouterLink to="/"
-            class="nav-link"
+            <RouterLink to="/news-list"
+            class="nav-item nav-link me-1"
             @click="closeNavbar"
-            aria-current="page">首頁</RouterLink>
-          </li>
-          <li class="nav-item">
+            aria-current="page">最新消息</RouterLink>
+
             <RouterLink to="/products"
-            class="nav-link"
+            class="nav-item nav-link me-1"
             @click="closeNavbar"
-            aria-current="page">商品</RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink to="/cart"
-            class="nav-link"
+            aria-current="page">美味菜單</RouterLink>
+
+            <RouterLink to="/story"
+            class="nav-item nav-link me-1"
             @click="closeNavbar"
-            aria-current="page">購物車</RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink to="/login"
-            class="nav-link"
+            aria-current="page">品牌故事</RouterLink>
+
+            <RouterLink to="/contact-us"
+            class="nav-item nav-link me-1"
             @click="closeNavbar"
-            aria-current="page">登入頁</RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink to="/admin/orders"
-            class="nav-link"
-            @click="closeNavbar"
-            aria-current="page">後單訂單頁</RouterLink>
-          </li>
-        </ul>
+            aria-current="page">聯絡我們</RouterLink>
+          </div>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
+  <div class="cover" :class="{show: !btnState}"></div>
   <RouterView></RouterView>
 </template>
 
@@ -70,16 +77,30 @@ export default {
   data() {
     return {
       isHide: false,
+      btnState: true,
+      scrolled: false,
     };
+  },
+  watch: {
+    $route() {
+      this.isHide = false;
+      this.btnState = true;
+    },
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeMounted() {
+    window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
     closeNavbar() {
       this.isHide = !this.isHide;
+      this.btnState = !this.btnState;
+    },
+    handleScroll() {
+      this.scrolled = window.scrollY > 0;
     },
   },
-  // mounted() {
-  //   console.log(this.$refs.navbar);
-  //   this.navbar = new Tab(this.$refs.navbar);
-  // },
 };
 </script>

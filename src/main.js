@@ -11,7 +11,7 @@ import CKEditor from '@ckeditor/ckeditor5-vue';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSpinner, faEye } from '@fortawesome/free-solid-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
 import {
   Field, Form, ErrorMessage, defineRule, configure,
@@ -28,7 +28,7 @@ import App from './App.vue';
 import 'vue3-toastify/dist/index.css';
 import './assets/all.scss';
 
-library.add(faSpinner, faEye);
+library.add(fas);
 
 Object.keys(AllRules).forEach((rule) => {
   defineRule(rule, AllRules[rule]);
