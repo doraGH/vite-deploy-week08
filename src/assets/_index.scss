@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
 /*=== banner  ===*/
 .banner {
   overflow: hidden;
@@ -35,11 +34,12 @@ section {
   padding: 60px 0;
 }
 .main-header {
-  font-family: "Koulen", "arial", sans-serif;
-  font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
   font-style: normal;
   font-size: 50px;
-  color: #ff7272;
+  color: #000;
+  margin-bottom: 40px;
   small {
     color: #333;
     font-size: 40px;
