@@ -29,3 +29,20 @@
     }
   }
 }
+
+/*=== 共用設定  ===*/
+section {
+  padding: 60px 0;
+}
+.main-header {
+  font-family: "Koulen", "arial", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 50px;
+  color: #ff7272;
+  small {
+    color: #333;
+    font-size: 40px;
+    font-weight: 600;
+  }
+}

@@ -7,7 +7,7 @@
           class="nav-link me-3"
           aria-current="page" to="/" @click="closeNavbar">
           <img src="../../assets/images/logo.svg"
-            alt="" width="247" height="70"
+            alt="" width="169" height="70"
             class="d-inline-block align-text-top"/>
         </Router-Link>
         <div class="d-flex justify-content-end navbar-qlink">
