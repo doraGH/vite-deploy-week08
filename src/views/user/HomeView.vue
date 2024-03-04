@@ -38,7 +38,7 @@
 
 <script>
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Autoplay, Pagination, Navigation } from 'swiper'
+import { Autoplay, Pagination, Navigation } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
