@@ -31,18 +31,181 @@
 
 /*=== 共用設定  ===*/
 section {
-  padding: 60px 0;
+  padding: 100px 0;
 }
 .main-header {
-  font-family: "Poppins", sans-serif;
-  font-weight: 800;
+  // font-family: "Poppins", sans-serif;
+  font-family: "Koulen", "arial", sans-serif;
   font-style: normal;
-  font-size: 50px;
-  color: #000;
-  margin-bottom: 40px;
+  font-size: 54px;
+  color: #000000;
+  margin-bottom: 50px;
   small {
     color: #333;
     font-size: 40px;
     font-weight: 600;
+  }
+}
+
+/*====== iproduct ======*/
+/* 圖片樣式 */
+.iproducts {
+  .item_cont {
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+    &-image {
+      position: relative;
+      width: 100%;
+      padding-bottom: 100%;
+      margin-bottom: 25px;
+      border-radius: 50rem 50rem 0 0;
+      overflow: hidden;
+      transition: all 0.4s;
+      img {
+        display: block;
+        position: absolute;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.4s;
+      }
+      &::after {
+        opacity: 0;
+        font-family: "Poppins", sans-serif;
+        content: 'view +';
+        display: block;
+        width: 120px;
+        height: 60px;
+        background-color: var(--main-pink);
+        color: #fff;
+        line-height: 60px;
+        text-align: center;
+        position: absolute;
+        top: 58%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50rem;
+        transition: all 0.4s;
+      }
+    }
+    &-text {
+      text-align: center;
+      color: #000;
+      .tibox {
+        font-size: 1.25rem;
+        line-height: 1.7;
+      }
+    }
+    &:hover {
+      .item_cont-image {
+        background-color: #000;
+        img {
+          transform: scale(1.1);
+          opacity: 0.5;
+        }
+        &::after {
+          top: 55%;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+/*====== inews ======*/
+.inews {
+  background-color: #fff3f3;
+  .single-box {
+    position: relative;
+    border-radius: 20px;
+    border: 1rem solid #fff;
+    &_pic {
+      padding-bottom: 60%;
+      border-radius: 10px;
+      display: block;
+      position: relative;
+      overflow: hidden;
+      img {
+        display: block;
+        position: absolute;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.4s;
+      }
+      &:hover {
+        img {
+          transform: scale(1.1);
+        }
+      }
+    }
+    &_txt {
+      padding: 2rem;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      color: #fff;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.6643032213) 0%, rgba(255, 255, 255, 0) 86%);
+      border-radius: 0 0 10px 10px;
+      .date {
+        font-size: 1rem;
+      }
+      .tibox {
+        width: 100%;
+        font-size: 1.25rem;
+        line-height: 1.7;
+      }
+    }
+  }
+  .list-group {
+    .sbox {
+      align-items: center;
+      text-decoration: none;
+      &:not(:last-child) {
+        border-bottom: 1px solid rgba(#000, 0.1);
+        padding-bottom: 1.5rem;;
+        margin-bottom: 1.5rem;
+      }
+      .image {
+        position: relative;
+        padding-bottom: 15%;
+        overflow: hidden;
+        img {
+          display: block;
+          position: absolute;
+          z-index: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: all 0.4s;
+        }
+      }
+      .text {
+        color: #000;  
+        &-cat {
+          padding: 0 10px;
+          margin-right: 10px;
+          color: var(--main-pink);
+          border: 1px solid pink;
+          font-size: 0.9375rem;
+          display: inline-block;
+        }    
+        &-date {
+          display: inline-block;
+          color: var(--main-pink);
+        }
+        &-title {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          font-size: 1.125rem;
+          line-height: 2;
+        }
+      }
+    }
   }
 }

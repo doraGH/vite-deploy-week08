@@ -1,0 +1,36 @@
+/* 寬度設定 */
+// .swiper {
+//   width: 100%;
+// }
+
+/* pagination 自定義式 */
+.custom-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+  .swiper-pagination-bullet {
+    display: block;
+    position: relative;
+    width: 27px;
+    height: 27px;
+    margin: 0 7px;
+    cursor: pointer;
+    background: transparent;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 14px;
+      height: 14px;
+      margin: -7px 0 0 -7px;
+      border-radius: 100%;
+      background: #e76785;
+      content: "";
+    }
+    &-active::before {
+      background: #e76785;
+    }
+  }
+}

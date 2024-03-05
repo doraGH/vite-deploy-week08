@@ -2,7 +2,7 @@
   <header class="fixed-top">
     <nav class="navbar navbar-expand-md navbar-light"
     :class="{ 'pink-light': scrolled }" ref="navbar">
-      <div class="container-fluid d-flex">
+      <div class="container d-flex">
         <Router-Link
           class="nav-link me-3"
           aria-current="page" to="/" @click="closeNavbar">
