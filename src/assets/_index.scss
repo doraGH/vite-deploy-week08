@@ -31,25 +31,83 @@
 
 /*=== 共用設定  ===*/
 section {
-  padding: 100px 0;
+  padding: 50px 0;
 }
 .main-header {
   // font-family: "Poppins", sans-serif;
   font-family: "Koulen", "arial", sans-serif;
   font-style: normal;
-  font-size: 54px;
+  font-size: 40px;
   color: #000000;
-  margin-bottom: 50px;
-  small {
-    color: #333;
-    font-size: 40px;
-    font-weight: 600;
+  margin-bottom: 30px;
+}
+@media (min-width: 768px) {
+
+}
+@media (min-width: 992px) {
+  section {
+    padding: 100px 0;
+  }
+  .main-header {
+    font-size: 54px;
+    margin-bottom: 50px;
+  }
+}
+
+/*====== iabout ======*/
+.iabout {
+  .text {  
+    .tibox {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+    p {
+      line-height: 1.7;
+      font-size: 1.125rem;
+      color: #333;
+    }
+  }
+  .pic {
+    position: relative;
+    border-radius: 6rem 1rem 1rem 1rem;
+    overflow: hidden;
+    img {
+      display: block;
+      position: absolute;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.4s;
+    }
+  }
+}
+.about-1 {
+  margin-bottom: 100px;
+  .text {
+    width: 40%;
+  }
+  .pic {
+    width: 55%;
+    padding-bottom: 35%;
+  }
+}
+.about-2 {
+  padding: 0 50px;
+  .text {
+    width: 45%;
+  }
+  .pic {
+    width: 50%;
+    padding-bottom: 55%;
   }
 }
 
 /*====== iproduct ======*/
 /* 圖片樣式 */
 .iproducts {
+  position: relative;
   .item_cont {
     display: block;
     cursor: pointer;
@@ -57,7 +115,7 @@ section {
     &-image {
       position: relative;
       width: 100%;
-      padding-bottom: 100%;
+      padding-bottom: 110%;
       margin-bottom: 25px;
       border-radius: 50rem 50rem 0 0;
       overflow: hidden;
@@ -151,8 +209,18 @@ section {
       color: #fff;
       background: linear-gradient(0deg, rgba(0, 0, 0, 0.6643032213) 0%, rgba(255, 255, 255, 0) 86%);
       border-radius: 0 0 10px 10px;
+      .category {
+        padding: 0 10px;
+        margin-right: 10px;
+        color: var(--main-pink);
+        color: #fff;
+        border: 1px solid #fff;
+        font-size: 0.9375rem;
+        display: inline-block;
+      }
       .date {
         font-size: 1rem;
+        display: inline-block;
       }
       .tibox {
         width: 100%;
@@ -163,17 +231,19 @@ section {
   }
   .list-group {
     .sbox {
+      padding-top: 1.5rem;
       align-items: center;
       text-decoration: none;
       &:not(:last-child) {
         border-bottom: 1px solid rgba(#000, 0.1);
-        padding-bottom: 1.5rem;;
-        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
       }
       .image {
         position: relative;
-        padding-bottom: 15%;
+        width: 100%;
+        padding-bottom: 70%;
         overflow: hidden;
+        border-radius: 4px;
         img {
           display: block;
           position: absolute;
@@ -186,7 +256,7 @@ section {
       }
       .text {
         color: #000;  
-        &-cat {
+        .category {
           padding: 0 10px;
           margin-right: 10px;
           color: var(--main-pink);
@@ -194,18 +264,41 @@ section {
           font-size: 0.9375rem;
           display: inline-block;
         }    
-        &-date {
+        .date {
           display: inline-block;
           color: var(--main-pink);
         }
-        &-title {
+        .title {
           text-overflow: ellipsis;
-          white-space: nowrap;
+          // white-space: nowrap;
           overflow: hidden;
           font-size: 1.125rem;
-          line-height: 2;
+          line-height: 1.5;
+        }
+      }
+      &:hover {
+        .image img {
+          transform: scale(1.1);
+        }
+        .text {
+          .title {
+            text-decoration: underline;
+          }
         }
       }
     }
   }
+}
+
+@media (min-width: 768px) {
+  .inews {
+    .single-box {
+      &_pic {
+        padding-bottom: 80%;}}}
+}
+@media (min-width: 992px) {
+  .inews {
+    .single-box {
+      &_pic {
+        padding-bottom: 65%;}}}
 }

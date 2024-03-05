@@ -11,6 +11,34 @@
         <font-awesome-icon :icon="['fas', 'arrow-right']" /> </RouterLink>
     </div>
   </div>
+  <section class="iabout">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center about-1">
+        <div class="text">
+          <div class="tibox">歡愉滋味，專業巧思，<br>締造心動美味風潮！</div>
+          <p>揭開歡樂滋味的序幕，我們以專業巧思打造獨一無二的美味饗宴，
+            每一口都是心動的旋律。精選頂級食材，搭配獨特的烹飪技藝，
+            呈現令人難以忘懷的口感。透過細緻的烹調，我們將美味提升至一種藝術，
+            讓您的味蕾在專業巧思中沸騰。融合創新和傳統，我們引領著一場風潮，
+            讓您沉浸在美好的味覺饗宴中，共同譜寫難忘的滋味時光。</p>
+        </div>
+        <div class="pic">
+          <img src="https://images.unsplash.com/photo-1572837663132-76c0ccd9cb6f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"></div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center about-2">
+        <div class="text order-1">
+          <div class="tibox">歡愉滋味，專業巧思，<br>締造心動美味風潮！</div>
+          <p>揭開歡樂滋味的序幕，我們以專業巧思打造獨一無二的美味饗宴，
+            每一口都是心動的旋律。精選頂級食材，搭配獨特的烹飪技藝，
+            呈現令人難以忘懷的口感。透過細緻的烹調，我們將美味提升至一種藝術，
+            讓您的味蕾在專業巧思中沸騰。融合創新和傳統，我們引領著一場風潮，
+            讓您沉浸在美好的味覺饗宴中，共同譜寫難忘的滋味時光。</p>
+        </div>
+        <div class="pic">
+          <img src="https://images.unsplash.com/photo-1633933358116-a27b902fad35?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"></div>
+      </div>
+    </div>
+  </section>
   <section class="iproducts">
     <div class="container">
       <h2 class="main-header text-center">NEW PRODUCTS</h2>
@@ -19,9 +47,9 @@
           ref="mySwiper"
           :loop="true"
           :autoplay="{ delay: 6000, disableOnInteraction: false }"
-          :slides-per-group="1"
-          :slides-per-view="1"
-          :space-between="50"
+          :slidesPerGroup="1"
+          :slidesPerView="1"
+          :spaceBetween="50"
           :modules="modules"
           :navigation="false"
           :pagination="{
@@ -58,59 +86,71 @@
     <div class="container">
       <h2 class="main-header text-center">NEWS</h2>
       <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-md-6">
           <div class="single-box">
             <a href="#" title="" class="single-box_pic">
-              <img src="https://images.unsplash.com/photo-1557142046-c704a3adf364?q=80&w=500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="530" height="530" class="img-fluid" alt="">
+              <img src="https://images.unsplash.com/photo-1584611312625-5541eed009e1?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="530" height="530" class="img-fluid" alt="">
             </a>
             <div class="single-box_txt">
-              <!-- <div class="box__txt-cat">媒體報導</div> -->
+              <div class="category">媒體報導</div>
               <div class="date">2023.10.23</div>
-              <h3 class="tibox">席捲臺北時裝週 盡情暢飲體驗健康微醺感 金曲樂團麋先生也好愛！</h3>
+              <h3 class="tibox">【限定版驚喜】 限量版甜點冰淇淋震撼上市！數量有限，趕快品味這份獨家滋味，為您的味蕾帶來極致享受。</h3>
             </div>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-md-6">
           <div class="list-group">
             <a href="#" class="row sbox">
-              <div class="col-3 image">
-                <img src="https://images.unsplash.com/photo-1629385701021-fcd568a743e8?q=80&w=900&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="">
+              <div class="col-3">
+                <div class="image">
+                  <img src="https://images.unsplash.com/photo-1594959866517-58a53e09a397?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="">
+                </div>
               </div>
               <div class="col-9 text">
-                <div class="text-cat">媒體報導</div>
-                <div class="text-date">2023.09.29</div>
-                <div class="text-title">
-                  星晨酒藏 入選 VOGUE Taiwan, Fno select, trend 當代趨勢
+                <div class="category">媒體報導</div>
+                <div class="date">2023.09.29</div>
+                <div class="title">
+                  【全新口味饗宴】 冰淇淋匠心巧思，推陳出新！全新口味系列即將問世，讓您品味前所未有的絕妙滋味。
                 </div>
               </div>
             </a>
             <a href="#" class="row sbox">
-              <div class="col-3 image">
-                <img src="https://images.unsplash.com/photo-1592413890637-ea80fb4ed093?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="">
+              <div class="col-3">
+                <div class="image">
+                  <img src="https://images.unsplash.com/photo-1573991288363-aa2067bc6a73?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="">
+                </div>
               </div>
               <div class="col-9 text">
-                <div class="text-cat">媒體報導</div>
-                <div class="text-date">2023.09.29</div>
-                <div class="text-title">
-                  222
+                <div class="category">媒體報導</div>
+                <div class="date">2023.09.29</div>
+                <div class="title">
+                  【綠意盎然的夏日】 推出夏季限定甜點冰淇淋系列，融合清新水果和芳香奶香，為您帶來涼爽的夏日風味。
                 </div>
               </div>
             </a>
             <a href="#" class="row sbox">
-              <div class="col-3 image">
-                <img src="https://images.unsplash.com/photo-1592413890637-ea80fb4ed093?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="">
+              <div class="col-3">
+                <div class="image">
+                  <img src="https://images.unsplash.com/photo-1551290464-66719418ca54?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="">
+                </div>
               </div>
               <div class="col-9 text">
-                <div class="text-cat">媒體報導</div>
-                <div class="text-date">2023.09.29</div>
-                <div class="text-title">
-                  2332
+                <div class="category">媒體報導</div>
+                <div class="date">2023.09.29</div>
+                <div class="title">
+                  【突破味覺極限】 新款甜點冰淇淋登場！以大膽創新的配方結合經典口味，挑戰味覺極限，讓人驚艷不已。
                 </div>
               </div>
             </a>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+  <section class="adv container">
+    <div class="row">
+      <div class="col-6">1</div>
+      <div class="col-6">2</div>
     </div>
   </section>
 </template>
