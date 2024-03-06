@@ -215,7 +215,6 @@ export default {
     },
     // 上傳圖片
     uploadImage() {
-      // console.dir(this.$refs.fileInput);
       const file = this.$refs.fileInput.files[0];
       const formData = new FormData(); // 產生一個form表單
       formData.append('file-to-upload', file); // 對應api 文件裡面表單的name, 並將檔案夾帶上去
@@ -223,7 +222,8 @@ export default {
       this.axios
         .post(`${VITE_URL}/api/${VITE_PATH}/admin/upload`, formData)
         .then((response) => {
-          // console.log(response.data.imageUrl);
+          // 清除文件輸入的值
+          this.$refs.fileInput.value = '';
 
           // 使用 $emit 發送修改後的值到外部
           this.$emit('update-temp-product', {

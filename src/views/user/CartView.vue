@@ -47,43 +47,6 @@
                         {{ item.product.unit }}</span>
                     </div>
                   </div>
-
-                  <!-- <div class="input-group input-group-sm">
-                    <div class="input-group mb-3">
-                      <button type="button"
-                        class="btn btn-outline-primary btn-sm"
-                        :disabled="item.qty === 1"
-                        v-if="item.qty > 1"
-                        @click="item.qty--;updateCart(item, item.qty)">
-                        -
-                      </button>
-
-                      <button type="button"
-                        class="btn btn-outline-danger btn-sm"
-                        v-else
-                        @click="removeCartItem(item.id)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                          <path d="M5.5 5.5A.5.5 0 0 1 6
-                          6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1
-                          0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                          <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0
-                          1-2-2V4h-.5a1 1 0 0 1-1-1V2a1
-                          1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4
-                          4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                        </svg>
-                      </button>
-
-                      <input min="1" type="number" class="form-control" v-model.number="item.qty"
-                        :disabled="item.id === status.loadQty" readonly>
-
-                      <button type="button" class="btn btn-outline-primary btn-sm"
-                      :disabled="item.qty === 20"
-                      @click="item.qty++;updateCart(item, item.qty)">
-                        +
-                      </button>
-
-                    </div>
-                  </div> -->
                 </td>
                 <td class="text-end">
                   {{ item.final_total }}
