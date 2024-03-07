@@ -81,11 +81,11 @@
           </div>
           <div class="mb-3">
             <label for="name" class="form-label">收件人姓名</label>
-            <VField type="text" class="form-control" id="name" name="name" placeholder="請輸入姓名"
-              :class="{'is-invalid':errors['name']}"
+            <VField type="text" class="form-control" id="name" name="姓名" placeholder="請輸入姓名"
+              :class="{'is-invalid':errors['姓名']}"
               rules="required"
               v-model="form.data.user.name" />
-            <ErrorMessage class="invalid-feedback" name="name" />
+            <ErrorMessage class="invalid-feedback" name="姓名" />
           </div>
           <div class="mb-3">
             <label for="tel" class="form-label">收件人電話</label>
@@ -101,12 +101,12 @@
             <VField type="text"
               class="form-control"
               id="address"
-              name="address"
+              name="地址"
               placeholder="請輸入地址"
-              :class="{'is-invalid':errors['address']}"
+              :class="{'is-invalid':errors['地址']}"
               rules="required"
               v-model="form.data.user.address" />
-            <ErrorMessage class="invalid-feedback" name="address" />
+            <ErrorMessage class="invalid-feedback" name="地址" />
           </div>
           <div class="mb-3">
             <label for="message" class="form-label">留言</label>

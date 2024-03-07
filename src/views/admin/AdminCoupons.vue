@@ -94,7 +94,6 @@ export default {
       if (status === 'createNew') {
         this.isNew = true;
         this.tempCoupon.data = {
-          // due_date: Math.floor(new Date(this.due_date) / 1000),
           due_date: Math.floor(new Date().getTime() / 1000),
           is_enabled: 0,
         };
@@ -137,13 +136,16 @@ export default {
       this.isLoading = true;
       let url = `${VITE_URL}/api/${VITE_PATH}/admin/coupon`;
       let http = 'post';
-      // 不是isNew
+      let data = item;
+
+      // 如果不是新的優惠券，則使用PUT請求並包含優惠券ID
       if (!this.isNew) {
-        url += `/${item.id}`;
+        url += `/${this.tempCoupon.data.id}`;
         http = 'put';
+        data = this.tempCoupon;
       }
 
-      this.axios[http](url, item)
+      this.axios[http](url, data)
         .then((response) => {
           this.isLoading = false;
           toast.success(response.data.message);

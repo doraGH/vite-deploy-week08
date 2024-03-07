@@ -86,7 +86,7 @@
     <div class="container">
       <h2 class="main-header text-center">NEWS</h2>
       <div class="row">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-lg-6">
           <div class="single-box">
             <a href="#" title="" class="single-box_pic">
               <img src="https://images.unsplash.com/photo-1584611312625-5541eed009e1?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="530" height="530" class="img-fluid" alt="">
@@ -98,7 +98,7 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-lg-6">
           <div class="list-group">
             <a href="#" class="row sbox">
               <div class="col-3">

@@ -68,6 +68,38 @@
   </header>
   <div class="cover" :class="{show: !btnState}"></div>
   <RouterView></RouterView>
+
+  <footer class="container py-2">
+    <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-2 border-top">
+      <div class="col-md-7 d-flex align-items-center">
+        <div class="mb-3 me-2 mb-md-0 text-muted">
+          <img src="../../assets/images/logo.svg"
+          alt="" width="169" height="70"
+          class="d-inline-block align-text-top"/>
+        </div>
+        <span class="text-muted">© 2024 Sweet Home Shop.</span>
+      </div>
+
+      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex fs-4">
+        <li class="ms-4">
+          <a class="text-muted" href="#">
+            <font-awesome-icon :icon="['fab', 'facebook']" />
+          </a>
+        </li>
+        <li class="ms-4">
+          <a class="text-muted" href="#">
+            <font-awesome-icon :icon="['fab', 'youtube']" />
+          </a>
+        </li>
+        <li class="ms-4">
+          <a class="text-muted" href="#">
+            <font-awesome-icon :icon="['fab', 'instagram']" />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
 </template>
 
 <script>

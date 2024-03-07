@@ -215,7 +215,7 @@ section {
         color: var(--main-pink);
         color: #fff;
         border: 1px solid #fff;
-        font-size: 0.9375rem;
+        font-size: 0.875rem;
         display: inline-block;
       }
       .date {
@@ -290,15 +290,18 @@ section {
   }
 }
 
-@media (min-width: 768px) {
-  .inews {
-    .single-box {
-      &_pic {
-        padding-bottom: 80%;}}}
-}
 @media (min-width: 992px) {
   .inews {
     .single-box {
       &_pic {
-        padding-bottom: 65%;}}}
+        padding-bottom: 100%;}}}
 }
+@media (min-width: 1200px) {
+  .inews {
+    .single-box {
+      &_pic {
+        padding-bottom: 64%;}}}
+}
+
+
+/*====== adv ======*/
