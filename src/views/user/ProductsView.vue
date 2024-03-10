@@ -1,6 +1,6 @@
 <template>
   <VueLoading :active="isLoading" />
-  <div class="container my-4">
+  <div class="container g-wrapper">
     <h2>前台產品列表</h2>
     <div class="mt-4">
       <div class="row row-cols-5 my-4 g-4">

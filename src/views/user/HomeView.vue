@@ -11,34 +11,6 @@
         <font-awesome-icon :icon="['fas', 'arrow-right']" /> </RouterLink>
     </div>
   </div>
-  <section class="iabout">
-    <div class="container">
-      <div class="d-flex justify-content-between align-items-center about-1">
-        <div class="text">
-          <div class="tibox">歡愉滋味，專業巧思，<br>締造心動美味風潮！</div>
-          <p>揭開歡樂滋味的序幕，我們以專業巧思打造獨一無二的美味饗宴，
-            每一口都是心動的旋律。精選頂級食材，搭配獨特的烹飪技藝，
-            呈現令人難以忘懷的口感。透過細緻的烹調，我們將美味提升至一種藝術，
-            讓您的味蕾在專業巧思中沸騰。融合創新和傳統，我們引領著一場風潮，
-            讓您沉浸在美好的味覺饗宴中，共同譜寫難忘的滋味時光。</p>
-        </div>
-        <div class="pic">
-          <img src="https://images.unsplash.com/photo-1572837663132-76c0ccd9cb6f?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"></div>
-      </div>
-      <div class="d-flex justify-content-between align-items-center about-2">
-        <div class="text order-1">
-          <div class="tibox">歡愉滋味，專業巧思，<br>締造心動美味風潮！</div>
-          <p>揭開歡樂滋味的序幕，我們以專業巧思打造獨一無二的美味饗宴，
-            每一口都是心動的旋律。精選頂級食材，搭配獨特的烹飪技藝，
-            呈現令人難以忘懷的口感。透過細緻的烹調，我們將美味提升至一種藝術，
-            讓您的味蕾在專業巧思中沸騰。融合創新和傳統，我們引領著一場風潮，
-            讓您沉浸在美好的味覺饗宴中，共同譜寫難忘的滋味時光。</p>
-        </div>
-        <div class="pic">
-          <img src="https://images.unsplash.com/photo-1633933358116-a27b902fad35?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"></div>
-      </div>
-    </div>
-  </section>
   <section class="iproducts">
     <div class="container">
       <h2 class="main-header text-center">NEW PRODUCTS</h2>
@@ -147,10 +119,43 @@
       </div>
     </div>
   </section>
+  <section class="iabout2">
+    <div class="container">
+      <div class="d-flex flex-column justify-content-center text-center">
+        <div class="stitle">Fresh Ice Cream Shop</div>
+        <div class="tibox">締造心動美味風潮！</div>
+        <p>揭開歡樂滋味的序幕，我們以專業巧思打造獨一無二的美味饗宴，
+          每一口都是心動的旋律。<br>精選頂級食材，搭配獨特的烹飪技藝，
+          呈現令人難以忘懷的口感。<br>透過細緻的烹調，我們將美味提升至一種藝術，
+          讓您的味蕾在專業巧思中沸騰。<br>融合創新和傳統，我們引領著一場風潮，
+          讓您沉浸在美好的味覺饗宴中，共同譜寫難忘的滋味時光。</p>
+      </div>
+    </div>
+  </section>
   <section class="adv container">
     <div class="row">
-      <div class="col-6">1</div>
-      <div class="col-6">2</div>
+      <div class="col-6 adv-wrap">
+        <a href="">
+          <div class="adv-text">
+            <div class="title">品牌故事</div>
+            <p>創新美味，品味生活的奇妙旅程。</p>
+            <span class="arrow">
+              <i class="hidden_i">more</i></span>
+          </div>
+          <div class="pic adv-img1"></div>
+        </a>
+      </div>
+      <div class="col-6 adv-wrap">
+        <a href="">
+          <div class="adv-text">
+            <div class="title">聯絡我們</div>
+            <p>發現味蕾之寶，品味美好生活。</p>
+            <span class="arrow">
+              <i class="hidden_i">more</i></span>
+          </div>
+          <div class="pic adv-img2"></div>
+        </a>
+      </div>
     </div>
   </section>
 </template>

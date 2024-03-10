@@ -41,9 +41,6 @@ section {
   color: #000000;
   margin-bottom: 30px;
 }
-@media (min-width: 768px) {
-
-}
 @media (min-width: 992px) {
   section {
     padding: 100px 0;
@@ -54,55 +51,51 @@ section {
   }
 }
 
-/*====== iabout ======*/
-.iabout {
-  .text {  
-    .tibox {
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin-bottom: 1.5rem;
-    }
-    p {
-      line-height: 1.7;
-      font-size: 1.125rem;
-      color: #333;
-    }
+/*====== iabout2 ======*/
+.iabout2 {
+  padding-bottom: 22%;
+  background: url(../../about_pic1.jpg) bottom center no-repeat;
+  // background-size: contain;
+  .stitle {
+    color: #FF7272;
+    font-size: 1.25rem;
+    font-family: "Koulen", "arial", sans-serif;
   }
-  .pic {
+  .tibox {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2.5rem;
     position: relative;
-    border-radius: 6rem 1rem 1rem 1rem;
-    overflow: hidden;
-    img {
-      display: block;
+    &::after {
+      bottom: -20px;
+      content: "";
+      height: 7px;
+      border-top: 6px dotted #111;
+      left: 0;
+      left: 50%;
+      transform: translateX(-50%);
       position: absolute;
-      z-index: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: all 0.4s;
+      width: 34px;
+    }
+  }
+  p {
+    font-size: 1.125rem;
+    line-height: 2;
+    br {
+      display: none;
     }
   }
 }
-.about-1 {
-  margin-bottom: 100px;
-  .text {
-    width: 40%;
-  }
-  .pic {
-    width: 55%;
-    padding-bottom: 35%;
-  }
-}
-.about-2 {
-  padding: 0 50px;
-  .text {
-    width: 45%;
-  }
-  .pic {
-    width: 50%;
-    padding-bottom: 55%;
+@media (min-width: 992px) {
+  .iabout2 {
+    p {
+      br {
+        display: block;
+      }
+    }
   }
 }
+
 
 /*====== iproduct ======*/
 /* 圖片樣式 */
@@ -178,7 +171,7 @@ section {
   .single-box {
     position: relative;
     border-radius: 20px;
-    border: 1rem solid #fff;
+    // border: 1rem solid #fff;
     &_pic {
       padding-bottom: 60%;
       border-radius: 10px;
@@ -231,12 +224,12 @@ section {
   }
   .list-group {
     .sbox {
-      padding-top: 1.5rem;
+      padding-top: 1.25rem;
       align-items: center;
       text-decoration: none;
       &:not(:last-child) {
         border-bottom: 1px solid rgba(#000, 0.1);
-        padding-bottom: 1.5rem;
+        padding-bottom: 1.25rem;
       }
       .image {
         position: relative;
@@ -305,3 +298,99 @@ section {
 
 
 /*====== adv ======*/
+.adv {
+  padding-top: 0;
+}
+.adv-wrap {
+  .adv-img1 {
+    background: url(../../adv1.jpg) no-repeat,linear-gradient(67deg, #f3ced2 7%, #f5b6bd);
+  }
+  .adv-img2 {
+    background: url(../../adv2.jpg) no-repeat, linear-gradient(67deg, #bacbc5 7%, #b2ccc3);
+  }
+  a {
+    position: relative;
+    display: block;
+    height: 260px;
+    border-radius: 16px;
+    padding: 50px 60px;
+    box-sizing: border-box;
+    overflow: hidden;
+    color: #fff;
+    text-decoration: none;
+    &:hover {
+      
+      .arrow {
+        width: 106px;
+      }
+    }
+  }
+  .adv-text {
+    position: relative;
+    z-index: 10;
+  }
+  .title {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.39;
+    margin-bottom: 5px;
+  }
+  .txt {
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.88px;
+    line-height: 1.45;
+  }
+  .arrow {
+    position: absolute;
+    left: 0;
+    bottom: -50px;
+    display: inline-block;
+    width: 26px;
+    height: 12px;
+    transition: all 0.3s ease;
+    vertical-align: middle;
+    cursor: pointer;
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+    }
+    &::before {      
+      left: 0;
+      width: 100%;
+      border-bottom: 2px solid #fff;
+      transform: translateY(-50%);
+    }
+    &::after {
+      right: 0;
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid #fff;
+      border-top: 2px solid #fff;
+      transform: translateY(-50%) rotate(45deg);
+    }
+    .hidden_i {
+      overflow: hidden;
+      display: inline-block;
+      border: 0;
+      margin: -1px;
+      width: 1px;
+      height: 1px;
+      clip: rect(1px, 1px, 1px, 1px);
+      clip-path: inset(50%);
+    }
+  }
+  .pic {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    // transform: translate(-50%, -50%);
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.4s;
+  }
+}

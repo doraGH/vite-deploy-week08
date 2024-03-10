@@ -80,6 +80,12 @@ const router = createRouter({
   history: createWebHashHistory(),
   linkActiveClass: 'active',
   routes,
+  scrollBehavior() {
+    return {
+      top: 0,
+      behavior: 'smooth',
+    };
+  },
 });
 
 export default router;
