@@ -14,13 +14,15 @@
                 <span>特價 {{ item.price }} 元</span>
               </p>
               <div class="btn-group btn-group-sm d-flex">
-                <button type="button" class="btn btn-outline-secondary"
+                <!-- <button type="button" class="btn btn-outline-secondary"
                 :disabled="item.id === loadItem"
                 @click.prevent="fetchProductItem(item.id)">
                 <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse
                 v-if="item.id === loadItem" />
                   查看更多
-                </button>
+                </button> -->
+                <RouterLink :to="`/product-view/${item.id}`"
+                class="btn btn-outline-secondary">查看更多</RouterLink>
                 <button type="button" class="btn btn-outline-danger"
                 :disabled="item.id === status.loadCart"
                 @click.prevent="addCart(item.id)">
