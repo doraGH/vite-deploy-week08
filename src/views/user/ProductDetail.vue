@@ -1,12 +1,149 @@
 <template>
-  單一產品頁
+  <VueLoading :active="isLoading" />
+  <div class="container g-wrapper">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-white">
+              <li class="breadcrumb-item">
+                <RouterLink to="/">首頁</RouterLink>
+              </li>
+              <li class="breadcrumb-item">
+                <RouterLink to="/products">全部商品</RouterLink>
+              </li>
+              <li class="breadcrumb-item active text-brown"
+                  aria-current="page">{{ product.title }}</li>
+            </ol>
+          </nav>
+          <div class="row mb-5">
+            <div class="col-lg-6">
+              <div style="
+                    height: 500px;
+                    background-size: cover;
+                    background-position: center;
+                  "
+                   class="rounded-0"
+                   :style="{ backgroundImage: `url(${ product.imageUrl })` }">
+                <!-- <div class="position-absolute p-2 m-2 heart-icon"
+                     @click.prevent="editfollow(product.id)">
+                  <i class="fas fa-heart text-white"
+                     v-if="followed.indexOf(product.id) === -1"></i>
+                  <i class="fas fa-heart text-heart"
+                     v-else></i>
+                </div> -->
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <h2 class="font-weight-bold text-brown">
+                {{ product.title }}
+              </h2>
+              <p>{{ product.description }}</p>
+              <p class="mt-5">
+                【 商品說明 】<br />
+              </p>
+              <p v-html="product.description"></p>
+              <div class="d-flex flex-column align-items-end mb-3">
+                <p class="mb-0 h5 font-weight-bold text-right">
+                  NT ${{ product.price }} / {{ product.unit }}
+                </p>
+              </div>
+              <div class="d-flex">
+                <div class="w-50 me-3">
+                  <!-- <select name="unit"
+                      class="form-select"
+                      v-model.number="qty">
+                    <option :value="item"
+                            v-for="(item,key) in product.num"
+                            :key="key">
+                      {{ item }} {{ product.unit }}
+                    </option>
+                  </select> -->
+
+                  <div class="btn-group border qty-counter">
+                    <button type="button" class="btn btn-outline-primary btn-sm"
+                    @click="updateQty('decrement')">-</button>
+                    <input type="number" class="form-control rounded-0"
+                    readonly v-model.number="qty" />
+                    <button type="button" class="btn btn-outline-primary btn-sm"
+                    @click="updateQty('increment', product.num)">+</button>
+                  </div>
+
+                </div>
+                <button type="button"
+                  class="btn btn-primary w-50"
+                  @click.prevent="fetchAddCart(product.id, qty)"
+                  :disabled="product.id === status.loadCart">
+                  <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse
+                  v-if="product.id === status.loadCart" />
+                  加到購物車
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <h5 class="font-weight-bold mt-4">相關商品</h5>
+          <!-- <RelatePorducts :product="product"
+                          @update="getProduct" /> -->
+        </div>
+      </div>
+    </div>
 </template>
 <script>
+import { toast } from 'vue3-toastify';
+import { mapActions, mapState } from 'pinia';
+import cartStore from '@/stores/cartStore';
 
+const { VITE_URL, VITE_PATH } = import.meta.env;
 export default {
-  // 存取路由的屬性
+  data() {
+    return {
+      product: {},
+      qty: 1,
+      isLoading: false,
+    };
+  },
+  computed: {
+    ...mapState(cartStore, ['cartList', 'status']),
+  },
+  methods: {
+    ...mapActions(cartStore, ['addCart']),
+    // 取得單一產品
+    getProduct() {
+      const { id } = this.$route.params;
+      const url = `${VITE_URL}/api/${VITE_PATH}/product/${id}`;
+      this.isLoading = true;
+      this.axios.get(url)
+        .then((response) => {
+          const { product } = response.data;
+          this.isLoading = false;
+          this.product = product;
+        })
+        .catch((error) => {
+          toast.error(error.response.data.message);
+        });
+    },
+    // 計算數量的遞減與遞增
+    updateQty(action, num = 1) {
+      const minQty = 1;
+      const maxQty = num;
+
+      if (action === 'decrement') {
+        if (this.qty > minQty) {
+          this.qty -= 1;
+        }
+      } else if (action === 'increment') {
+        if (this.qty < maxQty) {
+          this.qty += 1;
+        }
+      }
+    },
+    // 呼叫外部加入購物車 api
+    fetchAddCart(productId, num) {
+      this.addCart(productId, num);
+    },
+  },
   mounted() {
-    console.log(this.$route);
+    this.getProduct();
   },
 };
 </script>

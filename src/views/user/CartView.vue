@@ -1,9 +1,9 @@
 <template>
   <VueLoading :active="isLoading" />
-  <div class="container my-4">
+  <div class="container g-wrapper">
     <h2>購物車</h2>
     <div class="row">
-      <div class="col-7">
+      <div class="col-12 col-lg-7">
         <!-- 購物車 -->
         <div class="text-end">
           <button class="btn btn-outline-danger"
@@ -67,7 +67,7 @@
         </div>
         <div v-else class="bg-light my-4 p-4">購物車沒有任何品項</div>
       </div>
-      <div class="col-5">
+      <div class="col-12 col-lg-5">
         <!-- 驗證表單 -->
         <VForm @submit="createOrder" ref="form" v-slot="{ errors }">
           <div class="mb-3">
