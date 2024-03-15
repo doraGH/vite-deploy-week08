@@ -3,6 +3,7 @@
   <div class="container g-wrapper">
       <div class="row justify-content-center">
         <div class="col-lg-10">
+          <!-- 麵包屑 -->
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-white">
               <li class="breadcrumb-item">
@@ -38,11 +39,8 @@
                 {{ product.title }}
               </h2>
               <p>{{ product.description }}</p>
-              <p class="mt-5">
-                【 商品說明 】<br />
-              </p>
-              <p v-html="product.description"></p>
               <div class="d-flex flex-column align-items-end mb-3">
+                <p class="mb-0 text-muted text-right"><del>NT$ {{ product.origin_price}}</del></p>
                 <p class="mb-0 h5 font-weight-bold text-right">
                   NT ${{ product.price }} / {{ product.unit }}
                 </p>
@@ -71,7 +69,7 @@
                 </div>
                 <button type="button"
                   class="btn btn-primary w-50"
-                  @click.prevent="fetchAddCart(product.id, qty)"
+                  @click.prevent="addCart(product.id, qty)"
                   :disabled="product.id === status.loadCart">
                   <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse
                   v-if="product.id === status.loadCart" />
@@ -82,8 +80,7 @@
           </div>
           <hr>
           <h5 class="font-weight-bold mt-4">相關商品</h5>
-          <!-- <RelatePorducts :product="product"
-                          @update="getProduct" /> -->
+          <RelateProducts />
         </div>
       </div>
     </div>
@@ -92,9 +89,13 @@
 import { toast } from 'vue3-toastify';
 import { mapActions, mapState } from 'pinia';
 import cartStore from '@/stores/cartStore';
+import RelateProducts from '@/components/RelateProducts.vue';
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
 export default {
+  components: {
+    RelateProducts,
+  },
   data() {
     return {
       product: {},
@@ -138,9 +139,9 @@ export default {
       }
     },
     // 呼叫外部加入購物車 api
-    fetchAddCart(productId, num) {
-      this.addCart(productId, num);
-    },
+    // fetchAddCart(productId, num) {
+    //   this.addCart(productId, num);
+    // },
   },
   mounted() {
     this.getProduct();

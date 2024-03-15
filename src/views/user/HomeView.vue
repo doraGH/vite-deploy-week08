@@ -39,7 +39,7 @@
             },
           }">
           <swiper-slide v-for="item in products" :key="item.id">
-            <RouterLink to="/products" class="item_cont">
+            <RouterLink :to="`/product-view/${item.id}`" class="item_cont">
               <div class="item_cont-image">
                 <img :src="item.imageUrl" alt="圖片">
               </div>
