@@ -47,6 +47,7 @@ export default defineStore('cartStore', {
           const { data } = response.data;
           this.isLoading = false;
           this.cartList = data;
+          // console.log(response);
         })
         .catch((error) => {
           Swal.fire(error.response.data.message);

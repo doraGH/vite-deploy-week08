@@ -19,8 +19,10 @@
           class="btn btn-sm position-relative me-4">
             <img src="../../assets/images/cart.svg" class="position-relative">
             <span class="position-absolute top-0
-            start-100 translate-middle badge rounded-pill bg-danger">
-              9
+            start-100 translate-middle badge rounded-pill bg-danger"
+            v-if="this.cartList.carts">
+            <!-- v-if 當頁面刷新時，先檢查cartList是否存在,否則會出錯 -->
+            {{ this.cartList.carts.length }}
               <span class="visually-hidden">unread messages</span>
             </span>
           </RouterLink>
@@ -67,6 +69,7 @@
     </nav>
   </header>
   <div class="cover" :class="{show: !btnState}"></div>
+
   <RouterView></RouterView>
 
   <footer class="footer">
@@ -84,17 +87,17 @@
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex fs-4">
           <li class="ms-4">
             <a class="text-muted" href="#">
-              <font-awesome-icon :icon="['fab', 'facebook']" />
+              <i class="bi bi-facebook"></i>
             </a>
           </li>
           <li class="ms-4">
             <a class="text-muted" href="#">
-              <font-awesome-icon :icon="['fab', 'youtube']" />
+              <i class="bi bi-youtube"></i>
             </a>
           </li>
           <li class="ms-4">
             <a class="text-muted" href="#">
-              <font-awesome-icon :icon="['fab', 'instagram']" />
+              <i class="bi bi-instagram"></i>
             </a>
           </li>
         </ul>
@@ -104,36 +107,48 @@
 </template>
 
 <script>
-// import Tab from 'bootstrap/js/dist/tab';
+import { mapActions, mapState } from 'pinia';
+import cartStore from '@/stores/cartStore'; // @ => /src
 
 export default {
   data() {
     return {
-      isHide: false,
-      btnState: true,
-      scrolled: false,
+      isHide: false, // 是否隱藏
+      btnState: true, // 按鈕狀態
+      scrolled: false, // 是否已滾動,如滾動加上粉紅底色
     };
   },
   watch: {
+    // 路由改變,重新設置隱藏與按鈕狀態
     $route() {
       this.isHide = false;
       this.btnState = true;
     },
   },
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll);
-  },
-  beforeMounted() {
-    window.removeEventListener('scroll', this.handleScroll);
+  computed: {
+    ...mapState(cartStore, ['cartList']),
   },
   methods: {
+    // 切換小尺寸選單狀態
     closeNavbar() {
       this.isHide = !this.isHide;
       this.btnState = !this.btnState;
     },
+    // 滾動事件
     handleScroll() {
       this.scrolled = window.scrollY > 0;
     },
+
+    ...mapActions(cartStore, ['getCarts']),
+  },
+  mounted() {
+    // dom生成時掛載監聽事件
+    window.addEventListener('scroll', this.handleScroll);
+    this.getCarts();
+  },
+  beforeUnmount() {
+    // 確保在組件銷毀之前移除監聽事件
+    window.removeEventListener('scroll', this.handleScroll);
   },
 };
 </script>

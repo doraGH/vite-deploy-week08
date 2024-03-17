@@ -17,7 +17,7 @@
       <div class="swiper-wrapper">
         <swiper
           ref="mySwiper"
-          :loop="true"
+          :loop="false"
           :autoplay="{ delay: 6000, disableOnInteraction: false }"
           :slidesPerGroup="1"
           :slidesPerView="1"
@@ -31,14 +31,14 @@
           :breakpoints="{
             480: {
               slidesPerView: 2,
-              slidesPerGroup: 2,
+              // slidesPerGroup: 2,
             },
             992: {
               slidesPerView: 4,
-              slidesPerGroup: 4,
+              // slidesPerGroup: 4,
             },
           }">
-          <swiper-slide v-for="item in products" :key="item.id">
+          <swiper-slide v-for="item in getDisplayedProducts()" :key="item.id">
             <RouterLink :to="`/product-view/${item.id}`" class="item_cont">
               <div class="item_cont-image">
                 <img :src="item.imageUrl" alt="圖片">
@@ -134,8 +134,8 @@
   </section>
   <section class="adv container">
     <div class="row">
-      <div class="col-6 adv-wrap">
-        <a href="">
+      <div class="col-12 col-md-6 my-1 adv-wrap">
+        <a href="#">
           <div class="adv-text">
             <div class="title">品牌故事</div>
             <p>創新美味，品味生活的奇妙旅程。</p>
@@ -145,8 +145,8 @@
           <div class="pic adv-img1"></div>
         </a>
       </div>
-      <div class="col-6 adv-wrap">
-        <a href="">
+      <div class="col-12 col-md-6 my-1 adv-wrap">
+        <a href="#">
           <div class="adv-text">
             <div class="title">聯絡我們</div>
             <p>發現味蕾之寶，品味美好生活。</p>
@@ -190,12 +190,6 @@ export default {
       this.isLoading = false;
     }, 1000);
     this.getProducts();
-
-    // 加入視窗大小變更事件監聽器
-    window.addEventListener('resize', this.recalculateSwiper);
-    // 初始設定 Swiper
-    this.recalculateSwiper();
-
     this.getArticles();
   },
   computed: {
@@ -203,15 +197,6 @@ export default {
   },
   methods: {
     ...mapActions(productStore, ['getProducts', 'getProductItem']),
-
-    // 重新計算 Swiper 輪播內容的方法
-    recalculateSwiper() {
-      // .$swiper 是 Swiper.js 提供的一個屬性，它包含了 Swiper 實例的引用。
-      const swiper = this.$refs.mySwiper.$swiper;
-      if (swiper) {
-        swiper.update(); // 觸發 Swiper 更新
-      }
-    },
 
     // 取得文章列表
     getArticles() {
@@ -225,10 +210,14 @@ export default {
           console.log(error.response.data.message);
         });
     },
+
+    getDisplayedProducts() {
+      // 取前10筆或特定category的产品
+      return this.products.slice(0, 6); // 只取前10条数据
+      // 或者你可以使用过滤器来过滤特定的category
+      // return this.products.filter(item => item.category === '特定category');
+    },
   },
-  beforeMount() {
-    // 在元件被銷毀前移除視窗大小變更事件監聽器，以防止記憶體洩漏
-    window.removeEventListener('resize', this.recalculateSwiper);
-  },
+
 };
 </script>

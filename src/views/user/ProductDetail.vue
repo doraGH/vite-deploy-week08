@@ -19,7 +19,7 @@
           <div class="row mb-5">
             <div class="col-lg-6">
               <div style="
-                    height: 500px;
+                    height: 600px;
                     background-size: cover;
                     background-position: center;
                   "
@@ -35,6 +35,7 @@
               </div>
             </div>
             <div class="col-lg-6">
+              <span class="badge rounded-pill bg-primary">{{ product.category }}</span>
               <h2 class="font-weight-bold text-brown">
                 {{ product.title }}
               </h2>
@@ -80,7 +81,7 @@
           </div>
           <hr>
           <h5 class="font-weight-bold mt-4">相關商品</h5>
-          <RelateProducts />
+          <RelateProducts :product="product" @update="getDetailProduct" />
         </div>
       </div>
     </div>
@@ -89,6 +90,7 @@
 import { toast } from 'vue3-toastify';
 import { mapActions, mapState } from 'pinia';
 import cartStore from '@/stores/cartStore';
+import productStore from '@/stores/productStore';
 import RelateProducts from '@/components/RelateProducts.vue';
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
@@ -104,13 +106,13 @@ export default {
     };
   },
   computed: {
+    ...mapState(productStore, ['products']),
     ...mapState(cartStore, ['cartList', 'status']),
   },
   methods: {
     ...mapActions(cartStore, ['addCart']),
     // 取得單一產品
-    getProduct() {
-      const { id } = this.$route.params;
+    getDetailProduct(id) {
       const url = `${VITE_URL}/api/${VITE_PATH}/product/${id}`;
       this.isLoading = true;
       this.axios.get(url)
@@ -121,6 +123,10 @@ export default {
         })
         .catch((error) => {
           toast.error(error.response.data.message);
+        })
+        .finally(() => {
+          // 關閉 loading
+          this.isLoading = false;
         });
     },
     // 計算數量的遞減與遞增
@@ -142,9 +148,13 @@ export default {
     // fetchAddCart(productId, num) {
     //   this.addCart(productId, num);
     // },
+    //
+
   },
-  mounted() {
-    this.getProduct();
+  created() {
+    // 在created 重新獲取產品ID，可以確保在元件創建後立即加載相關的產品詳細信息,包含圖片更新
+    const { id } = this.$route.params;
+    this.getDetailProduct(id);
   },
 };
 </script>

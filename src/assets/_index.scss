@@ -29,28 +29,6 @@
   }
 }
 
-/*=== 共用設定  ===*/
-section {
-  padding: 50px 0;
-}
-.main-header {
-  // font-family: "Poppins", sans-serif;
-  font-family: "Koulen", "arial", sans-serif;
-  font-style: normal;
-  font-size: 40px;
-  color: #000000;
-  margin-bottom: 30px;
-}
-@media (min-width: 992px) {
-  section {
-    padding: 100px 0;
-  }
-  .main-header {
-    font-size: 54px;
-    margin-bottom: 50px;
-  }
-}
-
 /*====== iabout2 ======*/
 .iabout2 {
   padding-bottom: 22%;

@@ -1,12 +1,23 @@
 <template>
   <VueLoading :active="isLoading" />
   <div class="container g-wrapper">
-    <h2>前台產品列表</h2>
+    <h2 class="text-center">美味菜單</h2>
+    <ul class="d-flex justify-content-center my-3 product-menu">
+      <li class="rounded-pill" :class="{active: isActive('/products')}">
+        <RouterLink :to="`/products`">全部</RouterLink>
+      </li>
+      <li class="rounded-pill" v-for="item in categories" :key="item"
+      :class="{active: isActive(`/products?category=${item}`)}">
+        <RouterLink :to="`/products?category=${item}`">{{ item }}</RouterLink>
+      </li>
+    </ul>
     <div class="mt-4">
-      <div class="row row-cols-5 my-4 g-4">
+      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 my-4 g-4">
         <div class="col" v-for="item in products" :key="item.id">
           <div class="card">
-            <img :src="item.imageUrl" class="card-img-top" alt="圖片">
+            <div class="card-image">
+              <img :src="item.imageUrl" class="card-img-top" alt="圖片">
+            </div>
             <div class="card-body">
               <h6 class="card-title">{{ item.title }}</h6>
               <p class="card-text">
@@ -14,15 +25,10 @@
                 <span>特價 {{ item.price }} 元</span>
               </p>
               <div class="btn-group btn-group-sm d-flex">
-                <!-- <button type="button" class="btn btn-outline-secondary"
-                :disabled="item.id === loadItem"
-                @click.prevent="fetchProductItem(item.id)">
-                <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse
-                v-if="item.id === loadItem" />
-                  查看更多
-                </button> -->
                 <RouterLink :to="`/product-view/${item.id}`"
-                class="btn btn-outline-secondary">查看更多</RouterLink>
+                class="btn btn-outline-secondary">
+                  查看更多
+                </RouterLink>
                 <button type="button" class="btn btn-outline-danger"
                 :disabled="item.id === status.loadCart"
                 @click.prevent="addCart(item.id)">
@@ -37,25 +43,23 @@
       </div>
     </div>
     <!-- pagination 分頁 -->
-    <PaginationComponent :pages="pagination" @change-page="getProducts"></PaginationComponent>
+    <PaginationComponent :pages="pagination" @change-page="changePage"></PaginationComponent>
   </div>
-  <ShowProductModal ref="modal" />
 </template>
 
 <script>
 import { mapActions, mapState } from 'pinia';
 import productStore from '@/stores/productStore';
 import cartStore from '@/stores/cartStore';
-import ShowProductModal from '../../components/ShowProductModal.vue';
 import PaginationComponent from '../../components/PaginationComponent.vue';
 
 export default {
   data() {
     return {
+      categories: ['冰品', '甜點'],
     };
   },
   components: {
-    ShowProductModal,
     PaginationComponent,
   },
   computed: {
@@ -66,15 +70,55 @@ export default {
     ...mapActions(productStore, ['getProducts', 'getProductItem']),
     ...mapActions(cartStore, ['addCart', 'getCarts']),
 
-    // 點擊呼叫單一產品 api
-    fetchProductItem(productId) {
-      this.$refs.modal.openModal();
-      this.getProductItem(productId);
+    // 取用getProducts方法並傳入category
+    fetchProducts() {
+      this.getProducts(this.$route.query.category);
+    },
+    // 切換頁面時,將分類及page重新代入
+    changePage(page) {
+      this.getProducts(this.$route.query.category, page);
+    },
+    // 路由切換動態移除新增class,判斷目前路由是否與指定路由相符
+    isActive(route) {
+      return this.$route.fullPath === route;
+    },
+  },
+  watch: {
+    // 監聽路由切換時,同步更新畫面
+    '$route.query': {
+      handler() {
+        this.fetchProducts();
+      },
+      deep: true,
     },
   },
   mounted() {
-    this.getProducts();
+    this.fetchProducts();
     this.getCarts();
   },
 };
 </script>
+<style lang="scss" scoped>
+.product-menu {
+  list-style: none;
+  padding-left: 0;
+  li {
+    min-width: 120px;
+    background-color: #f5f5f5;
+    margin: 0px 5px;
+    text-align: center;
+    a {
+      color: #333;
+      padding: 10px 20px;
+      text-decoration: none;
+      display: block;
+    }
+    &.active {
+      background-color: #EFA2A2;
+      a {
+        color: #fff;
+      }
+    }
+  }
+}
+</style>

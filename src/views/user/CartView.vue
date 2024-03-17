@@ -8,10 +8,10 @@
         <div class="text-end">
           <button class="btn btn-outline-danger"
           type="button"
-          :class="{'disabled': cartList.carts.length === 0}"
+          :class="{'disabled': cartsLength === 0}"
           @click="deleteAllCarts">清空購物車</button>
         </div>
-        <div v-if="cartList.carts && cartList.carts.length > 0" class="bg-light my-4 p-4">
+        <div v-if="this.cartList.carts && this.cartList.carts.length > 0" class="bg-light my-4 p-4">
           <table class="table align-middle">
             <thead>
               <tr>
@@ -134,6 +134,7 @@ const { VITE_URL, VITE_PATH } = import.meta.env;
 export default {
   data() {
     return {
+      cartsLength: 0,
       form: {
         data: {
           user: {
@@ -149,6 +150,13 @@ export default {
   },
   computed: {
     ...mapState(cartStore, ['cartList', 'status', 'isLoading']),
+    // 添加一個計算屬性來計算 cartList 的長度
+    cartsLengthComputed() {
+      if (this.cartList && this.cartList.carts) {
+        return this.cartList.carts.length;
+      }
+      return 0; // 如果 cartList 或 carts 不存在，返回 0
+    },
   },
 
   methods: {
@@ -186,6 +194,7 @@ export default {
   },
   mounted() {
     this.getCarts();
+    this.cartsLength = this.cartsLengthComputed; // 賦值
   },
 };
 </script>

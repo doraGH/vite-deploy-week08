@@ -36,4 +36,18 @@
   }
 }
 
-/* swiper-button 自定義式 */
+/* swiper 自定義式尺寸 */
+.swiper-slide {
+  &.one-item {
+    width: calc(100% - 50px);
+  }
+  &.two-items {
+    width: calc(50% - 50px);
+  }
+  &.three-items {
+    width: calc(33.33% - 50px);
+  }
+  &four-items {
+    width: calc(25% - 50px);
+  }
+}
