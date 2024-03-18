@@ -1,11 +1,12 @@
 <template>
   <VueLoading :active="isLoading" />
   <div class="container g-wrapper">
-    <h2>購物車</h2>
+    <h2 class="border-bottom py-4 my-5">購物車</h2>
     <div class="row">
       <div class="col-12 col-lg-7">
         <!-- 購物車 -->
-        <div class="text-end">
+        <div class="d-flex justify-content-between align-items-center">
+          <h5>購物清單</h5>
           <button class="btn btn-outline-danger"
           type="button"
           :class="{'disabled': cartsLength === 0}"
@@ -68,6 +69,7 @@
         <div v-else class="bg-light my-4 p-4">購物車沒有任何品項</div>
       </div>
       <div class="col-12 col-lg-5">
+        <h5>聯絡資訊</h5>
         <!-- 驗證表單 -->
         <VForm @submit="createOrder" ref="form" v-slot="{ errors }">
           <div class="mb-3">
@@ -114,7 +116,7 @@
             v-model="form.data.message"></textarea>
           </div>
           <div class="text-end">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary text-white">送出訂單</button>
           </div>
         </VForm>
       </div>
@@ -186,6 +188,7 @@ export default {
           this.$refs.form.resetForm();
           this.form.data.message = '';
           this.getCarts();
+          this.$router.push(`/order/${response.data.orderId}`);
         })
         .catch((error) => {
           Swal.fire(error.response.data.message);

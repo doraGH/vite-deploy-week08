@@ -44,10 +44,10 @@
         id="navbarNav" ref="navbarNav" :class="{ hide: isHide }">
           <div class="navbar-nav me-auto">
 
-            <RouterLink to="/news-list"
+            <!-- <RouterLink to="/news-list"
             class="nav-item nav-link me-1"
             @click="closeNavbar"
-            aria-current="page">最新消息</RouterLink>
+            aria-current="page">最新消息</RouterLink> -->
 
             <RouterLink to="/products"
             class="nav-item nav-link me-1"
