@@ -3,7 +3,7 @@
   <div class="container g-wrapper">
     <h2 class="border-bottom py-4 my-5">購物車</h2>
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 col-lg-7">
         <!-- 購物車 -->
         <div class="d-flex justify-content-between align-items-center">
           <h5>購物清單</h5>
@@ -55,55 +55,23 @@
               </tr>
             </tbody>
             <tfoot>
-              <!-- <tr>
+              <tr>
                 <td colspan="4" class="text-end">總計</td>
                 <td class="text-end">{{ cartList.total }}</td>
-              </tr> -->
+              </tr>
               <tr>
-                <td colspan="4" class="text-end text-danger">優惠促銷</td>
-                <td class="text-end text-success">
-                  <span class="text-notoSans">輸入「 <span ref="code">tai6666</span> 」優惠代碼再享 85 折
-                    ﹙<a href="#" class="link-danger">點我複製</a>﹚</span>
-                </td>
+                <td colspan="4" class="text-end text-success">折扣價</td>
+                <td class="text-end text-success">{{ cartList.final_total }}</td>
               </tr>
             </tfoot>
           </table>
         </div>
         <div v-else class="bg-light my-4 p-4">購物車沒有任何品項</div>
       </div>
-      <div class="col-12 col-lg-5 offset-lg-7 p-5">
-        
-        <div class="border-bottom border-dark">
-          <div class="d-flex justify-content-between">
-            <p>小計：</p>
-            <p>NT$ <span class="text-notoSans">{{ cartList.total }}</span></p>
-          </div>
-          <div class="d-flex justify-content-between">
-            <p>運費：</p>
-            <p>NT$ <span class="text-notoSans">0</span></p>
-          </div>
-          <div class="d-flex justify-content-between mb-4">
-            <p class="text-nowrap">優惠碼：</p>
-            <div class="d-flex justify-content-end">
-              <input type="text" class="form-control w-50 border-gray">
-              <button class="btn btn-secondary text-light ms-8" type="button"
-                  >套用</button>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="d-flex justify-content-between">
-            <p class="fw-bold">合計：</p>
-            <p class="fw-bold">NT$ <span class="text-notoSans">
-              {{ cartList.final_total }}</span><span class="text-danger ms-4"
-                    >(已使用優惠)</span></p>
-          </div>
-          <button type="button" class="btn btn-primary text-white w-100"
-            >下一步</button>
-        </div>
-        
+      <div class="col-12 col-lg-5">
+        <h5>聯絡資訊</h5>
         <!-- 驗證表單 -->
-        <!-- <VForm @submit="createOrder" ref="form" v-slot="{ errors }">
+        <VForm @submit="createOrder" ref="form" v-slot="{ errors }">
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <VField type="email" class="form-control" id="email" name="email"
@@ -150,7 +118,7 @@
           <div class="text-end">
             <button type="submit" class="btn btn-primary text-white">送出訂單</button>
           </div>
-        </VForm> -->
+        </VForm>
       </div>
     </div>
 

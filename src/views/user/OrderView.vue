@@ -84,7 +84,7 @@
 </template>
 
 <script>
-// import { toast } from 'vue3-toastify';
+import { toast } from 'vue3-toastify';
 import Swal from 'sweetalert2';
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
