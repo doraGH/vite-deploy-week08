@@ -2,15 +2,26 @@
   <VueLoading :active="isLoading" />
   <div class="container g-wrapper">
     <h2 class="text-center">美味菜單</h2>
-    <ul class="d-flex justify-content-center my-3 product-menu">
-      <li class="rounded-pill" :class="{active: isActive('/products')}">
-        <RouterLink :to="`/products`">全部</RouterLink>
-      </li>
-      <li class="rounded-pill" v-for="item in categories" :key="item"
-      :class="{active: isActive(`/products?category=${item}`)}">
-        <RouterLink :to="`/products?category=${item}`">{{ item }}</RouterLink>
-      </li>
-    </ul>
+    <div class="d-none d-md-block">
+      <ul class="d-flex justify-content-center my-3 product-menu ">
+        <li class="rounded-pill" :class="{active: isActive('/products')}">
+          <RouterLink :to="`/products`">全部</RouterLink>
+        </li>
+        <li class="rounded-pill" v-for="item in categories" :key="item"
+        :class="{active: isActive(`/products?category=${item}`)}">
+          <RouterLink :to="`/products?category=${item}`">{{ item }}</RouterLink>
+        </li>
+      </ul>
+    </div>
+    <div class="d-md-none">
+      <select class="form-select" aria-label="Default select example"
+      @change="handleCategoryChange">
+        <option value="all" :selected="isActive(`/products?category=${'all'}`)">全部</option>
+        <option v-for="item in categories" :key="item"
+        :value="item" :selected="isActive(`/products?category=${item}`)">{{ item }}</option>
+      </select>
+    </div>
+
     <div class="mt-4">
       <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 my-4 g-4">
         <div class="col" v-for="item in products" :key="item.id">
@@ -56,7 +67,8 @@ import PaginationComponent from '../../components/PaginationComponent.vue';
 export default {
   data() {
     return {
-      categories: ['冰品', '甜點'],
+      categories: ['冰品', '甜點', '飲品'],
+      currentCategory: 'all', // 目前選中的分類，初始化為 'all'
     };
   },
   components: {
@@ -82,9 +94,15 @@ export default {
     isActive(route) {
       return this.$route.fullPath === route;
     },
+    // 下拉選單切換邏輯
+    handleCategoryChange(event) {
+      const category = event.target.value;
+      this.currentCategory = category;
+      this.$router.push(`/products?category=${category}`);
+    },
   },
   watch: {
-    // 監聽路由切換時,同步更新畫面
+    // 監聽路由切換時產品,同步更新畫面
     '$route.query': {
       handler() {
         this.fetchProducts();
@@ -95,6 +113,12 @@ export default {
   mounted() {
     this.fetchProducts();
     this.getCarts();
+
+    // 重整時
+    const categoryFromRoute = this.$route.query.category;
+    if (categoryFromRoute) {
+      this.currentCategory = categoryFromRoute;
+    }
   },
 };
 </script>

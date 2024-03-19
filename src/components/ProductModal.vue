@@ -30,6 +30,9 @@
                   <input type="file" class="form-control" placeholder="請輸入圖片連結"
                   ref="fileInput"
                   @change="uploadImage">
+                  <hr>
+                  <input type="text" class="form-control"
+                  id="image" v-model="editProduct.data.imageUrl" placeholder="請輸入圖片連結" />
                 </div>
                 <img class="img-fluid" :src="editProduct.data.imageUrl" alt="">
               </div>

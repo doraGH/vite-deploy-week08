@@ -60,9 +60,10 @@
       <div class="row">
         <div class="col-4">
           <div class="single-box">
-            <a href="#" title="" class="single-box_pic">
+            <RouterLink :to="`/products?category=${encodeURIComponent('冰品')}`"
+            class="single-box_pic">
               <img src="https://images.unsplash.com/photo-1573991288363-aa2067bc6a73?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="530" height="530" class="img-fluid" alt="">
-            </a>
+            </RouterLink>
             <div class="single-box_txt">
               <h3 class="tibox">冰品專區<small>Ice cream area</small>
               </h3>
@@ -71,9 +72,10 @@
         </div>
         <div class="col-4">
           <div class="single-box">
-            <a href="#" title="" class="single-box_pic">
+            <RouterLink :to="`/products?category=${encodeURIComponent('甜點')}`"
+            class="single-box_pic">
               <img src="https://images.unsplash.com/photo-1567941723610-db0bcb4cca67?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="530" height="530" class="img-fluid" alt="">
-            </a>
+            </RouterLink>
             <div class="single-box_txt">
               <h3 class="tibox">甜點專區<small>Dessert area</small>
               </h3>
@@ -82,11 +84,12 @@
         </div>
         <div class="col-4">
           <div class="single-box">
-            <a href="#" title="" class="single-box_pic">
+            <RouterLink :to="`/products?category=${encodeURIComponent('飲品')}`"
+            class="single-box_pic">
               <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="530" height="530" class="img-fluid" alt="">
-            </a>
+            </RouterLink>
             <div class="single-box_txt">
-              <h3 class="tibox">咖啡專區<small>Coffee area</small>
+              <h3 class="tibox">飲品專區<small>Coffee area</small>
               </h3>
             </div>
           </div>
