@@ -11,7 +11,7 @@
       <thead>
         <tr>
           <th>名稱</th>
-          <th>折扣百分比</th>
+          <th>折扣金</th>
           <th>到期日</th>
           <th>是否啟用</th>
           <th>編輯</th>
@@ -20,7 +20,7 @@
       <tbody>
         <tr v-for="item in coupons" :key="item.id">
           <td>{{ item.title }}</td>
-          <td>{{ item.percent }}%</td>
+          <td>NT ${{ item.percent }}</td>
           <td>{{ formatDate(item.due_date) }}</td>
           <td>
             <span v-if="item.is_enabled === 1" class="text-success">啟用</span>

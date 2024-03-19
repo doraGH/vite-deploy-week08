@@ -59,7 +59,7 @@ app.use(CKEditor);
 // 吐司套件
 app.use(Vue3Toasity, {
   autoClose: 2000, // 自動關閉時間
-  position: toast.POSITION.TOP_RIGHT, // 提示窗位置
+  position: toast.POSITION.TOP_CENTER, // 提示窗位置
   toastStyle: {
     fontSize: '12px',
     minHeight: '50px',

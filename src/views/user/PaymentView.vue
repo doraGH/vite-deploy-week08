@@ -14,11 +14,14 @@
               </tr>
               <tr>
                 <th scope="row">訂購日期</th>
-                <td>{{ order.create_at}}</td>
+                <td>{{ formatDate(order.create_at) }}</td>
               </tr>
               <tr>
                 <th scope="row">是否付款</th>
-                <td>{{ order.is_paid}}</td>
+                <td>
+                  <span :class="{'text-success': order.is_paid}">
+              {{ order.is_paid ? '已付款' : '未付款'}}</span>
+                </td>
               </tr>
               <tr>
                 <th scope="row">收件人姓名</th>
@@ -45,13 +48,13 @@
         </div>
       </div>
       <div class="col-12 col-lg-5">
-        <h5>購買明細</h5>
+        <h5>確認明細</h5>
         <table class="table align-middle">
             <thead>
               <tr>
                 <th>圖片</th>
                 <th>品名</th>
-                <th>數量</th>
+                <th>數量/單位</th>
                 <th class="text-end">價格</th>
               </tr>
             </thead>
@@ -61,7 +64,7 @@
                 <td>
                   {{ item.product.title }}
                 </td>
-                <td>{{ item.qty }}</td>
+                <td> {{ item.qty }} / {{ item.product.unit }}</td>
                 <td class="text-end">
                   {{ item.final_total }}
                 </td>
@@ -75,8 +78,9 @@
             </tfoot>
           </table>
           <div class="text-end">
-            <button type="submit" class="btn btn-primary text-white"
-            @click.prevent="getPay(order.id)">我要結帳</button>
+            <RouterLink to="/orderfinish" class="btn btn-primary text-white w-100"
+            @click.prevent="getPay(order.id)">
+            確認付款</RouterLink>
           </div>
       </div>
     </div>
@@ -110,6 +114,7 @@ export default {
           this.order = order;
           this.products = products;
           this.user = user;
+          // console.log(response);
         })
         .catch((error) => {
           toast.error(error.response.data.message);
@@ -127,7 +132,8 @@ export default {
         .then((response) => {
           console.log(response);
           this.isLoading = false;
-          Swal.fire(response.data.message);
+          toast.success(response.data.message);
+          this.getOrder(id);
         })
         .catch((error) => {
           Swal.fire(error.response.data.message);
@@ -136,6 +142,11 @@ export default {
           // 關閉 loading
           this.isLoading = false;
         });
+    },
+    // 組合時間
+    formatDate(timestamp) {
+      const getTime = new Date(timestamp * 1000);
+      return getTime.toLocaleDateString();
     },
   },
   created() {

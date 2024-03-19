@@ -3,72 +3,74 @@
   <div class="container g-wrapper">
     <h2 class="border-bottom py-4 my-5">購物車</h2>
     <div class="row">
-      <div class="col-12 col-lg-7">
-        <!-- 購物車 -->
-        <div class="d-flex justify-content-between align-items-center">
-          <h5>購物清單</h5>
-          <button class="btn btn-outline-danger"
-          type="button"
-          :class="{'disabled': cartsLength === 0}"
-          @click="deleteAllCarts">清空購物車</button>
-        </div>
-        <div v-if="this.cartList.carts && this.cartList.carts.length > 0" class="bg-light my-4 p-4">
-          <table class="table align-middle">
-            <thead>
-              <tr>
-                <th></th>
-                <th>圖片</th>
-                <th>品名</th>
-                <th style="width: 150px">數量/單位</th>
-                <th class="text-end">單價</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="item in cartList.carts" :key="item.id">
-                <td>
-                  <button type="button"
-                  class="btn btn-outline-danger btn-sm"
-                  :disabled="item.id === status.loadQty"
-                  @click="removeCartItem(item.id)">
-                  <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse
-                  v-if="item.id === status.loadQty" />
-                    x
-                  </button>
-                </td>
-                <td><img class="img-cart" :src="item.product.imageUrl" alt=""></td>
-                <td>
-                  {{ item.product.title }}
-                </td>
-                <td>
-                  <div class="input-group input-group-sm">
-                    <div class="input-group mb-3">
-                      <input min="1" type="number" class="form-control" v-model.number="item.qty"
-                        @blur="updateCart(item)">
-                      <span class="input-group-text" id="basic-addon2">
-                        {{ item.product.unit }}</span>
-                    </div>
-                  </div>
-                </td>
-                <td class="text-end">
-                  {{ item.final_total }}
-                </td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="4" class="text-end">總計</td>
-                <td class="text-end">{{ cartList.total }}</td>
-              </tr>
-              <tr>
-                <td colspan="4" class="text-end text-success">折扣價</td>
-                <td class="text-end text-success">{{ cartList.final_total }}</td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-        <div v-else class="bg-light my-4 p-4">購物車沒有任何品項</div>
-      </div>
       <div class="col-12 col-lg-5">
+        <!-- 購物車 -->
+        <h5>購物清單</h5>
+        <div class="p-4">
+          <div v-if="this.cartList.carts && this.cartList.carts.length > 0">
+            <table class="table align-middle">
+              <thead>
+                <tr>
+                  <th>圖片</th>
+                  <th>品名</th>
+                  <th style="width: 150px">數量/單位</th>
+                  <th class="text-end">小計</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in cartList.carts" :key="item.id">
+                  <td><img class="img-cart" :src="item.product.imageUrl" alt=""></td>
+                  <td>
+                    {{ item.product.title }}
+                  </td>
+                  <td>
+                    {{ item.qty }} / {{ item.product.unit }}
+                  </td>
+                  <td class="text-end">
+                    {{ item.final_total }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div v-else class="bg-light p-4">購物車沒有任何品項</div>
+        </div>
+
+        <div class="p-4">
+          <div class="mb-4">
+            <div class="border-bottom border-dark">
+              <div class="d-flex justify-content-between">
+                <p>小計：</p>
+                <p>NT$ <span class="text-notoSans">{{ cartList.final_total }}</span></p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <p>運費：</p>
+                <p>NT$ <span class="text-notoSans">0</span></p>
+              </div>
+              <div class="d-flex justify-content-between mb-4"
+              v-if="cartList && cartList.carts && cartList.carts.length > 0
+        && cartList.carts[0].coupon">
+                <p class="text-nowrap">優惠碼：</p>
+                <p>NT$ <span class="text-notoSans">{{ cartList.carts[0].coupon.percent }}</span></p>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between my-3">
+              <p class="fw-bold">合計：</p>
+              <p class="fw-bold text-end">
+                NT$ <span class="text-notoSans fs-4">
+                {{ finalPrice }}</span>
+  
+                <span class="d-flex text-danger"
+                v-if="this.cartList.carts && this.cartList.carts.length > 0
+                && this.cartList.carts[0].coupon">
+                (已使用{{ this.cartList.carts[0].coupon.title }})</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-7 bg-light p-3">
         <h5>聯絡資訊</h5>
         <!-- 驗證表單 -->
         <VForm @submit="createOrder" ref="form" v-slot="{ errors }">
@@ -116,16 +118,16 @@
             v-model="form.data.message"></textarea>
           </div>
           <div class="text-end">
-            <button type="submit" class="btn btn-primary text-white">送出訂單</button>
+            <button type="submit" class="btn btn-primary text-white px-5">送出訂單</button>
           </div>
         </VForm>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
+import { toast } from 'vue3-toastify';
 import Swal from 'sweetalert2';
 import { mapActions, mapState } from 'pinia';
 
@@ -135,7 +137,6 @@ const { VITE_URL, VITE_PATH } = import.meta.env;
 export default {
   data() {
     return {
-      cartsLength: 0,
       form: {
         data: {
           user: {
@@ -150,23 +151,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(cartStore, ['cartList', 'status', 'isLoading']),
-    // 添加一個計算屬性來計算 cartList 的長度
-    cartsLengthComputed() {
-      if (this.cartList && this.cartList.carts) {
-        return this.cartList.carts.length;
-      }
-      return 0; // 如果 cartList 或 carts 不存在，返回 0
-    },
+    ...mapState(cartStore, ['cartList', 'finalPrice']),
   },
-
   methods: {
-    ...mapActions(cartStore, [
-      'getCarts',
-      'deleteAllCarts',
-      'removeCartItem',
-      'updateCart',
-    ]),
+    ...mapActions(cartStore, ['getCarts']),
 
     // 驗證手機
     isPhone(value) {
@@ -183,11 +171,11 @@ export default {
       this.axios
         .post(url, form)
         .then((response) => {
-          Swal.fire(response.data.message);
+          toast.success(response.data.message);
           this.$refs.form.resetForm();
           this.form.data.message = '';
           this.getCarts();
-          this.$router.push(`/order/${response.data.orderId}`);
+          this.$router.push(`/payment/${response.data.orderId}`);
         })
         .catch((error) => {
           Swal.fire(error.response.data.message);
@@ -196,7 +184,6 @@ export default {
   },
   mounted() {
     this.getCarts();
-    this.cartsLength = this.cartsLengthComputed; // 賦值
   },
 };
 </script>

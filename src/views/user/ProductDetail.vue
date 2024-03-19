@@ -25,13 +25,6 @@
                   "
                    class="rounded-0"
                    :style="{ backgroundImage: `url(${ product.imageUrl })` }">
-                <!-- <div class="position-absolute p-2 m-2 heart-icon"
-                     @click.prevent="editfollow(product.id)">
-                  <i class="fas fa-heart text-white"
-                     v-if="followed.indexOf(product.id) === -1"></i>
-                  <i class="fas fa-heart text-heart"
-                     v-else></i>
-                </div> -->
               </div>
             </div>
             <div class="col-lg-6">
@@ -48,16 +41,6 @@
               </div>
               <div class="d-flex">
                 <div class="w-50 me-3">
-                  <!-- <select name="unit"
-                      class="form-select"
-                      v-model.number="qty">
-                    <option :value="item"
-                            v-for="(item,key) in product.num"
-                            :key="key">
-                      {{ item }} {{ product.unit }}
-                    </option>
-                  </select> -->
-
                   <div class="btn-group border qty-counter">
                     <button type="button" class="btn btn-outline-primary btn-sm"
                     @click="updateQty('decrement')">-</button>
@@ -144,11 +127,6 @@ export default {
         }
       }
     },
-    // 呼叫外部加入購物車 api
-    // fetchAddCart(productId, num) {
-    //   this.addCart(productId, num);
-    // },
-    //
 
   },
   created() {

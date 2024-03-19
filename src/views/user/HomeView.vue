@@ -56,69 +56,45 @@
   </section>
   <section class="inews">
     <div class="container">
-      <h2 class="main-header text-center">NEWS</h2>
+      <!-- <h2 class="main-header text-center">NEWS</h2> -->
       <div class="row">
-        <div class="col-12 col-lg-6">
+        <div class="col-4">
           <div class="single-box">
             <a href="#" title="" class="single-box_pic">
-              <img src="https://images.unsplash.com/photo-1584611312625-5541eed009e1?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="530" height="530" class="img-fluid" alt="">
+              <img src="https://images.unsplash.com/photo-1573991288363-aa2067bc6a73?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="530" height="530" class="img-fluid" alt="">
             </a>
             <div class="single-box_txt">
-              <div class="category">媒體報導</div>
-              <div class="date">2023.10.23</div>
-              <h3 class="tibox">【限定版驚喜】 限量版甜點冰淇淋震撼上市！數量有限，趕快品味這份獨家滋味，為您的味蕾帶來極致享受。</h3>
+              <h3 class="tibox">冰品專區<small>Ice cream area</small>
+              </h3>
             </div>
           </div>
         </div>
-        <div class="col-12 col-lg-6">
-          <div class="list-group">
-            <a href="#" class="row sbox">
-              <div class="col-3">
-                <div class="image">
-                  <img src="https://images.unsplash.com/photo-1594959866517-58a53e09a397?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="">
-                </div>
-              </div>
-              <div class="col-9 text">
-                <div class="category">媒體報導</div>
-                <div class="date">2023.09.29</div>
-                <div class="title">
-                  【全新口味饗宴】 冰淇淋匠心巧思，推陳出新！全新口味系列即將問世，讓您品味前所未有的絕妙滋味。
-                </div>
-              </div>
+        <div class="col-4">
+          <div class="single-box">
+            <a href="#" title="" class="single-box_pic">
+              <img src="https://images.unsplash.com/photo-1567941723610-db0bcb4cca67?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="530" height="530" class="img-fluid" alt="">
             </a>
-            <a href="#" class="row sbox">
-              <div class="col-3">
-                <div class="image">
-                  <img src="https://images.unsplash.com/photo-1573991288363-aa2067bc6a73?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="">
-                </div>
-              </div>
-              <div class="col-9 text">
-                <div class="category">媒體報導</div>
-                <div class="date">2023.09.29</div>
-                <div class="title">
-                  【綠意盎然的夏日】 推出夏季限定甜點冰淇淋系列，融合清新水果和芳香奶香，為您帶來涼爽的夏日風味。
-                </div>
-              </div>
+            <div class="single-box_txt">
+              <h3 class="tibox">甜點專區<small>Dessert area</small>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="single-box">
+            <a href="#" title="" class="single-box_pic">
+              <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" width="530" height="530" class="img-fluid" alt="">
             </a>
-            <a href="#" class="row sbox">
-              <div class="col-3">
-                <div class="image">
-                  <img src="https://images.unsplash.com/photo-1551290464-66719418ca54?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid" alt="">
-                </div>
-              </div>
-              <div class="col-9 text">
-                <div class="category">媒體報導</div>
-                <div class="date">2023.09.29</div>
-                <div class="title">
-                  【突破味覺極限】 新款甜點冰淇淋登場！以大膽創新的配方結合經典口味，挑戰味覺極限，讓人驚艷不已。
-                </div>
-              </div>
-            </a>
+            <div class="single-box_txt">
+              <h3 class="tibox">咖啡專區<small>Coffee area</small>
+              </h3>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
   <section class="iabout2">
     <div class="container">
       <div class="d-flex flex-column justify-content-center text-center">
@@ -131,6 +107,7 @@
           讓您沉浸在美好的味覺饗宴中，共同譜寫難忘的滋味時光。</p>
       </div>
     </div>
+    <div class="container-fluid"><img src="/about_pic1.jpg" class="img-fluid"></div>
   </section>
   <section class="adv container">
     <div class="row">

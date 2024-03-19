@@ -113,5 +113,25 @@ export default defineStore('cartStore', {
     },
   },
 
-  getters: {},
+  getters: {
+    // 自動重新計算 cartList 的長度(在重整時才不會出錯)
+    // 判斷如果 cartList 不存在 或 carts是空值，返回 0
+    cartsLengthComputed() {
+      if (this.cartList && this.cartList.carts) {
+        return this.cartList.carts.length;
+      }
+      return 0;
+    },
+
+    // 計算(有/無)折扣後的價格
+    finalPrice() {
+      if (this.cartList && this.cartList.carts && this.cartList.carts.length > 0
+      && this.cartList.carts[0].coupon) {
+        return this.cartList.final_total - this.cartList.carts[0].coupon.percent;
+      } if (this.cartList && this.cartList.final_total) {
+        return this.cartList.final_total;
+      }
+      return 0; // 在其他情況下返回預設值
+    },
+  },
 });
