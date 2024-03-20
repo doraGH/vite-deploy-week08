@@ -2,6 +2,7 @@
   <VueLoading :active="isLoading" />
   <div class="container g-wrapper">
     <h2 class="text-center">美味菜單</h2>
+    <!-- 分類:電腦版 -->
     <div class="d-none d-md-block">
       <ul class="d-flex justify-content-center my-3 product-menu ">
         <li class="rounded-pill" :class="{active: isActive('/products')}">
@@ -13,10 +14,11 @@
         </li>
       </ul>
     </div>
+    <!-- 分類:手機版 -->
     <div class="d-md-none">
       <select class="form-select" aria-label="Default select example"
       @change="handleCategoryChange">
-        <option value="all" :selected="isActive(`/products?category=${'all'}`)">全部</option>
+        <option value="all" :selected="isActive(`/products`)">全部</option>
         <option v-for="item in categories" :key="item"
         :value="item" :selected="isActive(`/products?category=${item}`)">{{ item }}</option>
       </select>
@@ -25,7 +27,35 @@
     <div class="mt-4">
       <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 my-4 g-4">
         <div class="col" v-for="item in products" :key="item.id">
-          <div class="card">
+          <div class="procard">
+            <div class="procard-image">
+              <RouterLink :to="`/product-view/${item.id}`">
+                <img :src="item.imageUrl" alt="圖片">
+              </RouterLink>
+            </div>
+            <div class="procard-text">
+              <div class="tibox">{{ item.title }}</div>
+              <p class="card-text">
+                <del>原價 {{ item.origin_price }} 元</del> /
+                <span>特價 {{ item.price }} 元</span>
+              </p>
+              <div class="btn-group btn-group-sm d-flex">
+                <!-- <RouterLink :to="`/product-view/${item.id}`"
+                class="btn btn-outline-secondary">
+                  查看更多
+                </RouterLink> -->
+                <button type="button" class="btn btn-outline-danger"
+                :disabled="item.id === status.loadCart"
+                @click.prevent="addCart(item.id)">
+                <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse
+                v-if="item.id === status.loadCart" />
+                  加到購物車
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="card">
             <div class="card-image">
               <img :src="item.imageUrl" class="card-img-top" alt="圖片">
             </div>
@@ -49,7 +79,7 @@
                 </button>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -68,7 +98,6 @@ export default {
   data() {
     return {
       categories: ['冰品', '甜點', '飲品'],
-      currentCategory: 'all', // 目前選中的分類，初始化為 'all'
     };
   },
   components: {
@@ -77,6 +106,7 @@ export default {
   computed: {
     ...mapState(productStore, ['products', 'pagination', 'loadItem', 'isLoading']),
     ...mapState(cartStore, ['cartList', 'status']),
+
   },
   methods: {
     ...mapActions(productStore, ['getProducts', 'getProductItem']),
@@ -88,7 +118,13 @@ export default {
     },
     // 切換頁面時,將分類及page重新代入
     changePage(page) {
-      this.getProducts(this.$route.query.category, page);
+      const category = this.$route.query.category || ''; // 使用預設值
+      this.getProducts(category, page);
+      if (category === '') {
+        this.$router.push('/products');
+      } else {
+        this.$router.push(`/products?category=${category}`);
+      }
     },
     // 路由切換動態移除新增class,判斷目前路由是否與指定路由相符
     isActive(route) {
@@ -97,8 +133,11 @@ export default {
     // 下拉選單切換邏輯
     handleCategoryChange(event) {
       const category = event.target.value;
-      this.currentCategory = category;
-      this.$router.push(`/products?category=${category}`);
+      if (category === 'all') {
+        this.$router.push('/products');
+      } else {
+        this.$router.push(`/products?category=${category}`);
+      }
     },
   },
   watch: {
@@ -113,12 +152,6 @@ export default {
   mounted() {
     this.fetchProducts();
     this.getCarts();
-
-    // 重整時
-    const categoryFromRoute = this.$route.query.category;
-    if (categoryFromRoute) {
-      this.currentCategory = categoryFromRoute;
-    }
   },
 };
 </script>

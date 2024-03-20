@@ -1,11 +1,11 @@
 <template>
   <header class="fixed-top">
     <nav class="navbar navbar-expand-md navbar-light"
-    :class="{ 'pink-light': scrolled }" ref="navbar">
+    :class="{ 'pink-light': scrolled || isNotHome }" ref="navbar">
       <div class="container-fluid d-flex">
         <Router-Link
           class="nav-link me-3"
-          aria-current="page" to="/" @click="closeNavbar">
+          aria-current="page" to="/">
           <img src="../../assets/images/logo.svg"
             alt="" width="169" height="70"
             class="d-inline-block align-text-top"/>
@@ -20,9 +20,9 @@
             <img src="../../assets/images/cart.svg" class="position-relative">
             <span class="position-absolute top-0
             start-100 translate-middle badge rounded-pill bg-danger"
-            v-if="this.cartList.carts">
+            v-if="cartList.carts">
             <!-- v-if 當頁面刷新時，先檢查cartList是否存在,否則會出錯 -->
-            {{ this.cartList.carts.length }}
+            {{ cartList.carts.length }}
               <span class="visually-hidden">unread messages</span>
             </span>
           </RouterLink>
@@ -44,11 +44,6 @@
         id="navbarNav" ref="navbarNav" :class="{ hide: isHide }">
           <div class="navbar-nav me-auto">
 
-            <!-- <RouterLink to="/news-list"
-            class="nav-item nav-link me-1"
-            @click="closeNavbar"
-            aria-current="page">最新消息</RouterLink> -->
-
             <RouterLink to="/products"
             class="nav-item nav-link me-1"
             @click="closeNavbar"
@@ -59,10 +54,10 @@
             @click="closeNavbar"
             aria-current="page">品牌故事</RouterLink>
 
-            <RouterLink to="/contact-us"
+            <RouterLink to="/terms"
             class="nav-item nav-link me-1"
             @click="closeNavbar"
-            aria-current="page">聯絡我們</RouterLink>
+            aria-current="page">購買須知</RouterLink>
           </div>
         </div>
       </div>
@@ -116,6 +111,7 @@ export default {
       isHide: false, // 是否隱藏
       btnState: true, // 按鈕狀態
       scrolled: false, // 是否已滾動,如滾動加上粉紅底色
+      isNotHome: false, // 不是首頁
     };
   },
   watch: {
@@ -123,12 +119,15 @@ export default {
     $route() {
       this.isHide = false;
       this.btnState = true;
+      this.checkHomePage();
     },
   },
   computed: {
     ...mapState(cartStore, ['cartList']),
   },
   methods: {
+    ...mapActions(cartStore, ['getCarts']),
+
     // 切換小尺寸選單狀態
     closeNavbar() {
       this.isHide = !this.isHide;
@@ -138,16 +137,19 @@ export default {
     handleScroll() {
       this.scrolled = window.scrollY > 0;
     },
-
-    ...mapActions(cartStore, ['getCarts']),
+    // 判斷路由不是首頁
+    checkHomePage() {
+      this.isNotHome = this.$route.fullPath !== '/';
+    },
   },
   mounted() {
     // dom生成時掛載監聽事件
     window.addEventListener('scroll', this.handleScroll);
     this.getCarts();
+    this.checkHomePage(); // 再次檢查是否為首頁(重整時才不會出錯)
   },
   beforeUnmount() {
-    // 確保在組件銷毀之前移除監聽事件
+    // 確保在元件卸載之前移除監聽事件
     window.removeEventListener('scroll', this.handleScroll);
   },
 };

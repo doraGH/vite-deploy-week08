@@ -59,7 +59,6 @@
               <p class="fw-bold text-end">
                 NT$ <span class="text-notoSans fs-4">
                 {{ finalPrice }}</span>
-  
                 <span class="d-flex text-danger"
                 v-if="this.cartList.carts && this.cartList.carts.length > 0
                 && this.cartList.carts[0].coupon">

@@ -20,8 +20,8 @@
           :loop="false"
           :autoplay="{ delay: 6000, disableOnInteraction: false }"
           :slidesPerGroup="1"
-          :slidesPerView="1"
-          :spaceBetween="50"
+          :slidesPerView="2"
+          :spaceBetween="20"
           :modules="modules"
           :navigation="false"
           :pagination="{
@@ -29,13 +29,13 @@
             clickable: true
             }"
           :breakpoints="{
-            480: {
-              slidesPerView: 2,
-              // slidesPerGroup: 2,
+            767: {
+              slidesPerView: 3,
+              spaceBetween: 30
             },
             992: {
               slidesPerView: 4,
-              // slidesPerGroup: 4,
+              spaceBetween: 40
             },
           }">
           <swiper-slide v-for="item in getDisplayedProducts()" :key="item.id">
@@ -54,11 +54,10 @@
       <div class="custom-pagination"></div>
     </div>
   </section>
-  <section class="inews">
+  <section class="icategory">
     <div class="container">
-      <!-- <h2 class="main-header text-center">NEWS</h2> -->
-      <div class="row">
-        <div class="col-4">
+      <div class="row g-4">
+        <div class="col-12 col-sm-4">
           <div class="single-box">
             <RouterLink :to="`/products?category=${encodeURIComponent('冰品')}`"
             class="single-box_pic">
@@ -70,7 +69,7 @@
             </div>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-4">
           <div class="single-box">
             <RouterLink :to="`/products?category=${encodeURIComponent('甜點')}`"
             class="single-box_pic">
@@ -82,7 +81,7 @@
             </div>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-4">
           <div class="single-box">
             <RouterLink :to="`/products?category=${encodeURIComponent('飲品')}`"
             class="single-box_pic">
@@ -115,7 +114,7 @@
   <section class="adv container">
     <div class="row">
       <div class="col-12 col-md-6 my-1 adv-wrap">
-        <a href="#">
+        <RouterLink to="/story">
           <div class="adv-text">
             <div class="title">品牌故事</div>
             <p>創新美味，品味生活的奇妙旅程。</p>
@@ -123,15 +122,16 @@
               <i class="hidden_i">more</i></span>
           </div>
           <div class="pic adv-img1"></div>
-        </a>
+        </RouterLink>
       </div>
       <div class="col-12 col-md-6 my-1 adv-wrap">
-        <a href="#">
+        <a href="#" @click.prevent="copyCode">
           <div class="adv-text">
-            <div class="title">聯絡我們</div>
-            <p>發現味蕾之寶，品味美好生活。</p>
-            <span class="arrow">
-              <i class="hidden_i">more</i></span>
+            <div class="title">好康優惠</div>
+            <p>凡購買就享有300折價金</p>
+            <div class="btn btn-primary text-white">
+              點我領取優惠碼或輸入<span ref="couponcode">fast300</span>
+            </div>
           </div>
           <div class="pic adv-img2"></div>
         </a>
@@ -141,6 +141,7 @@
 </template>
 
 <script>
+import { toast } from 'vue3-toastify';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
@@ -150,8 +151,6 @@ import 'swiper/css/pagination';
 
 import { mapActions, mapState } from 'pinia';
 import productStore from '@/stores/productStore';
-
-const { VITE_URL, VITE_PATH } = import.meta.env;
 
 export default {
   components: {
@@ -170,7 +169,6 @@ export default {
       this.isLoading = false;
     }, 1000);
     this.getProducts();
-    this.getArticles();
   },
   computed: {
     ...mapState(productStore, ['products', 'loadItem']),
@@ -178,22 +176,21 @@ export default {
   methods: {
     ...mapActions(productStore, ['getProducts', 'getProductItem']),
 
-    // 取得文章列表
-    getArticles() {
-      const url = `${VITE_URL}/api/${VITE_PATH}/articles`;
-      this.axios.get(url)
-        .then((response) => {
-          const { articles } = response.data;
-          this.articles = articles;
+    // 複制優惠碼
+    copyCode() {
+      const textCode = this.$refs.couponcode.innerText;
+      navigator.clipboard.writeText(textCode)
+        .then(() => {
+          toast.success('成功複製優惠碼');
         })
-        .catch((error) => {
-          console.log(error.response.data.message);
+        .catch(() => {
+          toast.error('複製失敗');
         });
     },
 
+    // 取得前10筆產品
     getDisplayedProducts() {
-      // 取前10筆或特定category的产品
-      return this.products.slice(0, 6); // 只取前10条数据
+      return this.products.slice(0, 9);
       // 或者你可以使用过滤器来过滤特定的category
       // return this.products.filter(item => item.category === '特定category');
     },

@@ -16,24 +16,29 @@
                   aria-current="page">{{ product.title }}</li>
             </ol>
           </nav>
-          <div class="row mb-5">
-            <div class="col-lg-6">
-              <div style="
+          <div class="row my-5">
+            <div class="col-lg-5">
+              <div class="procard__detail">
+                <div class="procard__detail-image">
+                  <img :src="product.imageUrl" alt="圖片">
+                </div>
+              </div>
+              <!-- <div style="
                     height: 600px;
                     background-size: cover;
                     background-position: center;
                   "
                    class="rounded-0"
                    :style="{ backgroundImage: `url(${ product.imageUrl })` }">
-              </div>
+              </div> -->
             </div>
-            <div class="col-lg-6">
-              <span class="badge rounded-pill bg-primary">{{ product.category }}</span>
+            <div class="col-lg-6 offset-lg-1">
+              <span class="badge rounded-pill bg-primary mb-3">{{ product.category }}</span>
               <h2 class="font-weight-bold text-brown">
                 {{ product.title }}
               </h2>
-              <p>{{ product.description }}</p>
-              <div class="d-flex flex-column align-items-end mb-3">
+              <p class="lh-base">{{ product.description }}</p>
+              <div class="d-flex flex-column align-items-end mb-4">
                 <p class="mb-0 text-muted text-right"><del>NT$ {{ product.origin_price}}</del></p>
                 <p class="mb-0 h5 font-weight-bold text-right">
                   NT ${{ product.price }} / {{ product.unit }}
@@ -44,8 +49,10 @@
                   <div class="btn-group border qty-counter">
                     <button type="button" class="btn btn-outline-primary btn-sm"
                     @click="updateQty('decrement')">-</button>
+
                     <input type="number" class="form-control rounded-0"
                     readonly v-model.number="qty" />
+
                     <button type="button" class="btn btn-outline-primary btn-sm"
                     @click="updateQty('increment', product.num)">+</button>
                   </div>

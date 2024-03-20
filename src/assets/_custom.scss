@@ -198,19 +198,4 @@ section {
   object-fit: cover;
 }
 
-/*=== 前台product list ===*/
-.card-image {
-  width: 100%;
-  padding-bottom: 129%;
-  position: relative;
-  overflow: hidden;
-  img {
-    display: block;
-    position: absolute;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
 

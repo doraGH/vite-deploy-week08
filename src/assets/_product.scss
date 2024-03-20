@@ -1,20 +1,86 @@
 /*=== products ===*/
-.card-img-top {
-  height: 260px;
-  object-fit: cover;
-}
-.card-text {
-  font-size: 13px;
-
-  del {
-    color: #999;
+.procard {
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+  &-image {
+    position: relative;
+    width: 100%;
+    padding-bottom: 129%;
+    margin-bottom: 25px;
+    border-radius: 50rem 50rem 0 0;
+    overflow: hidden;
+    transition: all 0.4s;
+    img {
+      display: block;
+      position: absolute;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.4s;
+    }
+    &::after {
+      pointer-events: none;
+      opacity: 0;
+      font-family: "Poppins", sans-serif;
+      content: 'view +';
+      display: block;
+      width: 120px;
+      height: 60px;
+      background-color: var(--main-pink);
+      color: #fff;
+      line-height: 60px;
+      text-align: center;
+      position: absolute;
+      top: 58%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50rem;
+      transition: all 0.4s;
+    }
+    &:hover {
+      background-color: #000;
+      img {
+        transform: scale(1.1);
+        opacity: 0.5;
+      }
+      &::after {
+        top: 55%;
+        opacity: 1;
+      }
+    }
+  }
+  &-text {
+    text-align: center;
+    color: #000;
+    .tibox {
+      font-size: 1.25rem;
+      line-height: 1.7;
+    }
   }
 }
-.img-cart {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-}
-.active {
-  color: rgb(194, 75, 75);
+
+/*=== products detail ===*/
+.procard__detail {
+  display: block;
+  text-decoration: none;
+  &-image {
+    position: relative;
+    width: 100%;
+    padding-bottom: 129%;
+    margin-bottom: 25px;
+    border-radius: 50rem 50rem 0 0;
+    overflow: hidden;
+    transition: all 0.4s;
+    img {
+      display: block;
+      position: absolute;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.4s;
+    }
+  }
 }

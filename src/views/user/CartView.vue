@@ -55,10 +55,6 @@
               </tr>
             </tbody>
           </table>
-          <div class="d-flex my-5">
-            <h6>可用折價卷</h6>
-            <!--補折價列表-->
-          </div>
         </div>
         <div v-else class="bg-light my-4 p-4">購物車沒有任何品項</div>
       </div>
@@ -138,17 +134,24 @@ export default {
       const coupon = {
         code: this.couponCode,
       };
-      this.axios.post(url, { data: coupon })
-        .then((response) => {
-          // console.log(response);
-          toast.success(response.data.message);
-          this.couponCode = '';
-          this.getCarts();
-        })
-        .catch((error) => {
-          Swal.fire(error.response.data.message);
-          this.couponCode = '';
-        });
+
+      const totalPrice = this.finalPrice; // 獲取總價
+      if (totalPrice >= 500) {
+        this.axios.post(url, { data: coupon })
+          .then((response) => {
+            toast.success(response.data.message);
+            this.couponCode = '';
+            this.getCarts();
+          })
+          .catch((error) => {
+            Swal.fire(error.response.data.message);
+            this.couponCode = '';
+          });
+      } else {
+        // 不使用優惠卷
+        Swal.fire('總額不足500元,不能使用喔!');
+        this.couponCode = '';
+      }
     },
   },
   mounted() {

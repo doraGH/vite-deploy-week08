@@ -27,8 +27,8 @@ const routes = [
         component: () => import('../views/user/BrandStory.vue'),
       },
       {
-        path: 'contact-us',
-        component: () => import('../views/user/ContactUs.vue'),
+        path: 'terms',
+        component: () => import('../views/user/TermsView.vue'),
       },
       {
         path: 'cart',

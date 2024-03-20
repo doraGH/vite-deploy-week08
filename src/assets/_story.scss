@@ -1,0 +1,50 @@
+/*=== story  ===*/
+.banner-story {
+  overflow: hidden;
+  width: 100%;
+  height: 40vh;
+  margin: 85px auto 0;
+  background: url(https://images.unsplash.com/photo-1564801629778-eabf6ed7d440?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) center no-repeat;
+  background-size: cover;
+  object-fit: cover;
+}
+
+.story {
+  margin: 60px auto;
+  p {
+    line-height: 200%;
+  }
+  .pic {
+    width: 100%;
+    padding-bottom: 80%;
+    position: relative;
+    overflow: hidden;
+    img {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+@media (min-width: 767px) {
+  .story {
+    margin: 100px auto;
+    .pic {
+      width: 100%;
+      padding-bottom: 120%;
+    }
+  }
+}
+
+/*=== 購買須知  ===*/
+.banner-term {
+  overflow: hidden;
+  width: 100%;
+  height: 40vh;
+  margin: 85px auto 0;
+  background: url(https://images.unsplash.com/photo-1602296751259-edfb8274b682?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D) center no-repeat;
+  background-size: cover;
+  object-fit: cover;
+}

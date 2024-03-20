@@ -123,12 +123,12 @@ export default defineStore('cartStore', {
       return 0;
     },
 
-    // 計算(有/無)折扣後的價格
+    // 計算(有/無)折扣後的價格,並且總金額>=500
     finalPrice() {
       if (this.cartList && this.cartList.carts && this.cartList.carts.length > 0
       && this.cartList.carts[0].coupon) {
         return this.cartList.final_total - this.cartList.carts[0].coupon.percent;
-      } if (this.cartList && this.cartList.final_total) {
+      } if (this.cartList && this.cartList.final_total && this.cartList.final_total >= 500) {
         return this.cartList.final_total;
       }
       return 0; // 在其他情況下返回預設值
