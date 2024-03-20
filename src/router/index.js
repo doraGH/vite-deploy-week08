@@ -19,10 +19,6 @@ const routes = [
         component: () => import('../views/user/ProductDetail.vue'),
       },
       {
-        path: 'news-list',
-        component: () => import('../views/user/NewsList.vue'),
-      },
-      {
         path: 'story',
         component: () => import('../views/user/BrandStory.vue'),
       },
@@ -72,16 +68,6 @@ const routes = [
         path: 'coupons',
         name: '優惠券',
         component: () => import('../views/admin/AdminCoupons.vue'),
-      },
-      {
-        path: 'articles',
-        name: '文章管理列表',
-        component: () => import('../views/admin/AdminArticle.vue'),
-      },
-      {
-        path: 'article/new',
-        name: '新增文章',
-        component: () => import('../views/admin/AdminArticleView.vue'),
       },
     ],
   },

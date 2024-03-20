@@ -7,8 +7,6 @@ import axios from 'axios';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
 
-import CKEditor from '@ckeditor/ckeditor5-vue';
-
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -54,7 +52,6 @@ app.component('ErrorMessage', ErrorMessage);
 app.use(VueAxios, axios);
 app.use(createPinia());
 app.use(router);
-app.use(CKEditor);
 
 // 吐司套件
 app.use(Vue3Toasity, {
