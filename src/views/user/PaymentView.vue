@@ -66,7 +66,7 @@
                 </td>
                 <td> {{ item.qty }} / {{ item.product.unit }}</td>
                 <td class="text-end">
-                  {{ item.final_total }}
+                  {{ item.total }}
                 </td>
               </tr>
             </tbody>
@@ -77,6 +77,21 @@
               </tr>
             </tfoot>
           </table>
+          <!-- <div class="mb-4">
+            <div class="border-bottom border-dark">
+              <div class="d-flex justify-content-between">
+                <p>優惠卷折扣：</p>
+                <p>NT$ <span class="text-notoSans">{{ order.total }}</span></p>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between my-3">
+              <p class="fw-bold">合計：</p>
+              <p class="fw-bold text-end">
+                NT$ <span class="text-notoSans fs-4">
+                {{ order.total }}</span></p>
+            </div>
+          </div> -->
+
           <div class="text-end">
             <RouterLink to="/orderfinish" class="btn btn-primary text-white w-100"
             @click.prevent="getPay(order.id)">
@@ -114,7 +129,7 @@ export default {
           this.order = order;
           this.products = products;
           this.user = user;
-          // console.log(response);
+          console.log(order);
         })
         .catch((error) => {
           toast.error(error.response.data.message);
@@ -130,7 +145,7 @@ export default {
       this.isLoading = true;
       this.axios.post(url)
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           this.isLoading = false;
           toast.success(response.data.message);
           this.getOrder(id);

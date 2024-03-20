@@ -27,7 +27,7 @@
                     {{ item.qty }} / {{ item.product.unit }}
                   </td>
                   <td class="text-end">
-                    {{ item.final_total }}
+                    {{ item.total }}
                   </td>
                 </tr>
               </tbody>
@@ -41,24 +41,27 @@
             <div class="border-bottom border-dark">
               <div class="d-flex justify-content-between">
                 <p>小計：</p>
-                <p>NT$ <span class="text-notoSans">{{ cartList.final_total }}</span></p>
+                <p>NT$ <span class="text-notoSans">{{ cartList.total }}</span></p>
               </div>
-              <div class="d-flex justify-content-between">
+              <!-- <div class="d-flex justify-content-between">
                 <p>運費：</p>
                 <p>NT$ <span class="text-notoSans">0</span></p>
-              </div>
+              </div> -->
               <div class="d-flex justify-content-between mb-4"
               v-if="cartList && cartList.carts && cartList.carts.length > 0
         && cartList.carts[0].coupon">
-                <p class="text-nowrap">優惠碼：</p>
-                <p>NT$ <span class="text-notoSans">{{ cartList.carts[0].coupon.percent }}</span></p>
+                <p class="text-nowrap">優惠卷折扣：</p>
+                <p>
+                  <span class="text-notoSans">
+                  NT ${{ cartList.total - cartList.final_total }}
+                </span></p>
               </div>
             </div>
             <div class="d-flex justify-content-between my-3">
               <p class="fw-bold">合計：</p>
               <p class="fw-bold text-end">
                 NT$ <span class="text-notoSans fs-4">
-                {{ finalPrice }}</span>
+                {{ cartList.final_total }}</span>
                 <span class="d-flex text-danger"
                 v-if="this.cartList.carts && this.cartList.carts.length > 0
                 && this.cartList.carts[0].coupon">
@@ -150,7 +153,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(cartStore, ['cartList', 'finalPrice']),
+    ...mapState(cartStore, ['isLoading', 'cartList', 'finalPrice']),
   },
   methods: {
     ...mapActions(cartStore, ['getCarts']),

@@ -47,7 +47,7 @@ export default defineStore('cartStore', {
           const { data } = response.data;
           this.isLoading = false;
           this.cartList = data;
-          console.log(response);
+          // console.log(response);
         })
         .catch((error) => {
           Swal.fire(error.response.data.message);
@@ -124,32 +124,31 @@ export default defineStore('cartStore', {
     },
 
     // 計算(有/無)折扣後的價格,並且總金額>=500
-    finalPrice() {
-      if (this.cartList && this.cartList.carts && this.cartList.carts.length > 0
-      && this.cartList.carts[0].coupon) {
-        return this.cartList.final_total - this.cartList.carts[0].coupon.percent;
-      }
-      if (this.cartList && this.cartList.final_total
-        && this.cartList.final_total >= 500) {
-        return this.cartList.final_total;
-      }
-      return 0; // 在其他情況下返回預設值
-    },
-
     // finalPrice() {
-    //   if (this.cartList && this.cartList.carts && this.cartList.carts.length > 0) {
-    //     const total = this.cartList.final_total;
-    //     const { coupon } = this.cartList.carts[0];
-
-    //     if (coupon && total >= 500) {
-    //       // 如果有折扣且總金額>=500，將折扣金額扣除
-    //       return total - coupon.percent; // 假設 coupon.percent 是折扣金額
-    //     } if (total >= 500) {
-    //       // 如果沒有折扣但總金額>=500，則返回原始總金額
-    //       return total;
-    //     }
+    //   if (this.cartList && this.cartList.carts && this.cartList.carts.length > 0
+    //   && this.cartList.carts[0].coupon) {
+    //     return this.cartList.final_total - this.cartList.carts[0].coupon.percent;
+    //   }
+    //   if (this.cartList && this.cartList.final_total
+    //     && this.cartList.final_total >= 500) {
+    //     return this.cartList.final_total;
     //   }
     //   return 0; // 在其他情況下返回預設值
     // },
+
+    finalPrice() {
+      const totalPrice = this.cartList.total;
+      if (this.cartList && this.cartList.carts && this.cartList.carts.length > 0) {
+        const { coupon } = this.cartList.carts[0];
+        if (coupon && totalPrice >= 500) {
+          // 如果有折扣且總金額>=500，將折扣金額扣除
+          console.log(totalPrice - coupon.percent);
+          return totalPrice - coupon.percent; // 假設 coupon.percent 是折扣金額
+        }
+        // 如果沒有折扣但總金額>=500，則返回原始總金額
+        return totalPrice;
+      }
+      return totalPrice; // 在其他情況下返回預設值
+    },
   },
 });
