@@ -1,24 +1,11 @@
-# 六角學院 Vue 樣板
+# SweetHouse
+> 使用 Vite 建立的專案。
 
-> 這是六角學院的 Vue 樣板，是基於 Vite 所建立的專案。
+以販售冰淇淋甜點為主題的電商網站，分為前台客戶使用，以及後台管理者使用。
 
 Node.js 版本建議為：18.17.1 以上
 
-## 安裝與使用
 
-以下將會引導你如何安裝此專案到你的電腦上。
-
-### 取得專案
-
-```bash
-git clone https://github.com/hexschool/vite-template.git
-```
-
-### 移動到專案資料夾
-
-```bash
-cd vite-template
-```
 
 ## 環境變數
 
