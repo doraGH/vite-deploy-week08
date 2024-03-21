@@ -17,22 +17,14 @@
             </ol>
           </nav>
           <div class="row my-5">
-            <div class="col-lg-5">
+            <div class="col-md-5">
               <div class="procard__detail">
                 <div class="procard__detail-image">
                   <img :src="product.imageUrl" alt="圖片">
                 </div>
               </div>
-              <!-- <div style="
-                    height: 600px;
-                    background-size: cover;
-                    background-position: center;
-                  "
-                   class="rounded-0"
-                   :style="{ backgroundImage: `url(${ product.imageUrl })` }">
-              </div> -->
             </div>
-            <div class="col-lg-6 offset-lg-1">
+            <div class="col-md-6 offset-md-1">
               <span class="badge rounded-pill bg-primary mb-3">{{ product.category }}</span>
               <h2 class="font-weight-bold text-brown">
                 {{ product.title }}
