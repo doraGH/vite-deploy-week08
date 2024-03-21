@@ -39,10 +39,6 @@ const routes = [
         component: () => import('../views/user/PaymentView.vue'),
       },
       {
-        path: 'orderlist',
-        component: () => import('../views/user/OrderList.vue'),
-      },
-      {
         path: 'orderfinish',
         component: () => import('../views/user/OrderFinish.vue'),
       },

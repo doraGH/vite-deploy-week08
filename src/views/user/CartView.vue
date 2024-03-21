@@ -87,8 +87,7 @@
             <div class="d-flex justify-content-between mb-4">
               <p class="text-nowrap">優惠碼：</p>
               <div class="d-flex justify-content-end">
-                <input type="text" class="form-control w-50 border-gray" v-model="couponCode"
-                @keydown.enter="useCoupon">
+                <input type="text" class="form-control w-50 border-gray" v-model="couponCode">
                 <button class="btn btn-secondary text-light ms-8" type="button"
                 :class="{'disabled': couponCode === ''}"
                 @click="useCoupon">套用</button>
@@ -99,7 +98,7 @@
             <p class="fw-bold">合計：</p>
             <p class="fw-bold text-end">
               NT$ <span class="text-notoSans fs-4">
-              {{ calculatePrice(cartList.final_total) }}</span>
+              {{ Math.round(cartList.final_total) }}</span>
 
               <span class="d-flex text-danger"
               v-if="cartList.carts && cartList.carts.length > 0
@@ -167,10 +166,6 @@ export default {
         Swal.fire('總額不足500元,不能使用喔!');
         this.couponCode = '';
       }
-    },
-    // 計算優惠後總金額
-    calculatePrice(price) {
-      return Math.floor(price);
     },
   },
   mounted() {

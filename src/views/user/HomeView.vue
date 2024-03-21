@@ -109,7 +109,8 @@
           讓您沉浸在美好的味覺饗宴中，共同譜寫難忘的滋味時光。</p>
       </div>
     </div>
-    <div class="container-fluid"><img src="/about_pic1.jpg" class="img-fluid"></div>
+    <div class="container-fluid">
+      <img src="../../assets/images/about_pic1.jpg" class="img-fluid"></div>
   </section>
   <section class="adv container">
     <div class="row">

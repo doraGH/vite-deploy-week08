@@ -64,7 +64,7 @@
                 <p class="text-nowrap">優惠卷折扣：</p>
                 <p>
                   <span class="text-notoSans">
-                  NT ${{ cartList.total - cartList.final_total }}
+                  NT ${{ Math.floor(cartList.total - cartList.final_total) }}
                 </span></p>
               </div>
             </div>
@@ -72,7 +72,7 @@
               <p class="fw-bold">合計：</p>
               <p class="fw-bold text-end">
                 NT$ <span class="text-notoSans fs-4">
-                {{ cartList.final_total }}</span>
+                {{ Math.round(cartList.final_total) }}</span>
                 <span class="d-flex text-danger"
                 v-if="this.cartList.carts && this.cartList.carts.length > 0
                 && this.cartList.carts[0].coupon">
@@ -145,7 +145,6 @@
 import { toast } from 'vue3-toastify';
 import Swal from 'sweetalert2';
 import { mapActions, mapState } from 'pinia';
-
 import cartStore from '@/stores/cartStore';
 
 const { VITE_URL, VITE_PATH } = import.meta.env;

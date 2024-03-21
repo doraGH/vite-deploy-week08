@@ -97,14 +97,14 @@
             <div class="d-flex justify-content-between">
               <p>優惠卷折扣：</p>
               <p>NT$ <span class="text-notoSans">
-                {{ originPrice - order.total }}</span></p>
+                {{ Math.floor(originPrice - order.total) }}</span></p>
             </div>
           </div>
           <div class="d-flex justify-content-between my-3">
             <p class="fw-bold">合計：</p>
             <p class="fw-bold text-end text-primary">
               NT$ <span class="text-notoSans fs-4">
-                {{ order.total }}</span></p>
+                {{ Math.round(order.total) }}</span></p>
           </div>
         </div>
         <!-- 信用卡資訊 -->
@@ -129,7 +129,6 @@ export default {
       user: {},
       originPrice: 0,
       isLoading: false,
-
     };
   },
   components: {
@@ -156,7 +155,7 @@ export default {
           });
         })
         .catch((error) => {
-          toast.error(error);
+          toast.error(error.response.data.message);
         })
         .finally(() => {
           // 關閉 loading

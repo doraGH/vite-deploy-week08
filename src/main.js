@@ -26,7 +26,7 @@ import router from './router';
 import App from './App.vue';
 
 import 'vue3-toastify/dist/index.css';
-import './assets/all.scss';
+import './assets/css/all.scss';
 
 library.add(fas, fab);
 

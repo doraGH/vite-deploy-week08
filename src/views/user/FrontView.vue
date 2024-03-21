@@ -59,10 +59,6 @@
             @click="closeNavbar"
             aria-current="page">購買須知</RouterLink>
 
-            <RouterLink to="/orderlist"
-            class="nav-item nav-link me-1"
-            @click="closeNavbar"
-            aria-current="page">查看訂單</RouterLink>
           </div>
         </div>
       </div>

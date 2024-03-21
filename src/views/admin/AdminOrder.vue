@@ -25,7 +25,7 @@
           <tr>
             <td>{{ formatDate(item.create_at) }}</td>
             <td>{{ item.id }}</td>
-            <td>NT$ {{ item.total }}</td>
+            <td>NT$ {{ Math.round(item.total) }}</td>
             <td>
               <span :class="{'text-primary': !item.is_paid}">
               {{ item.is_paid ? '已付款' : '未付款' }}</span>
@@ -111,13 +111,10 @@ export default {
     // 組合時間
     formatDate(timestamp) {
       const getTime = new Date(timestamp * 1000);
-      // const thisTime = `${getTime.getFullYear()}/${getTime.getMonth() + 1}/${getTime.getDate()}`;
-      // return `${thisTime}`;
       return getTime.toLocaleDateString();
     },
     // 取消單一訂單
     delOneOrder(id) {
-      // const orderId = this.tempOrder.data.id;
       const url = `${VITE_URL}/api/${VITE_PATH}/admin/order/${id}`;
       Swal.fire({
         title: '確定要刪除訂單嗎?',
@@ -128,7 +125,6 @@ export default {
         if (result.isConfirmed) {
           this.axios
             .delete(url, id).then((response) => {
-              // this.$refs.delModal.hideModal();
               toast.success(response.data.message);
               this.getOrders();
             })

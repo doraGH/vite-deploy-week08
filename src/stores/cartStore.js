@@ -123,26 +123,13 @@ export default defineStore('cartStore', {
       return 0;
     },
 
-    // 計算(有/無)折扣後的價格,並且總金額>=500
-    // finalPrice() {
-    //   if (this.cartList && this.cartList.carts && this.cartList.carts.length > 0
-    //   && this.cartList.carts[0].coupon) {
-    //     return this.cartList.final_total - this.cartList.carts[0].coupon.percent;
-    //   }
-    //   if (this.cartList && this.cartList.final_total
-    //     && this.cartList.final_total >= 500) {
-    //     return this.cartList.final_total;
-    //   }
-    //   return 0; // 在其他情況下返回預設值
-    // },
-
     finalPrice() {
       const totalPrice = this.cartList.total;
       if (this.cartList && this.cartList.carts && this.cartList.carts.length > 0) {
         const { coupon } = this.cartList.carts[0];
         if (coupon && totalPrice >= 500) {
           // 如果有折扣且總金額>=500，將折扣金額扣除
-          console.log(totalPrice - coupon.percent);
+          // console.log(totalPrice - coupon.percent);
           return totalPrice - coupon.percent; // 假設 coupon.percent 是折扣金額
         }
         // 如果沒有折扣但總金額>=500，則返回原始總金額
