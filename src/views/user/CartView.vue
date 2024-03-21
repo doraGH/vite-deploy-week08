@@ -1,40 +1,26 @@
 <template>
   <VueLoading :active="isLoading" />
   <div class="container g-wrapper">
-    <h2 class="border-bottom py-4 my-5">購物車</h2>
-
-    <div class="position-relative m-5">
-      <div class="progress" style="height: 1px;">
-        <div class="progress-bar" role="progressbar"
-        style="width: 0%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-
-      <div class="position-absolute top-0 start-0 translate-middle
-      d-flex align-items-center">
-        <button type="button" class="btn btn-sm btn-primary rounded-pill"
-        style="width: 2rem; height:2rem;">1</button>
-        <div>購物車資訊</div>
-      </div>
-
-      <div class="position-absolute top-0 start-50 translate-middle
-      d-flex align-items-center">
-        <button type="button" class="btn btn-sm btn-secondary rounded-pill"
-        style="width: 2rem; height:2rem;">2</button>
-        <div>填寫購買資訊</div>
-      </div>
-
-      <div class="position-absolute top-0 start-100 translate-middle
-      d-flex align-items-center">
-        <button type="button" class="btn btn-sm btn-secondary rounded-pill"
-        style="width: 2rem; height:2rem;">3</button>
-        <div>確認結帳</div>
+    <div class="row d-flex justify-content-between align-items-center border-bottom py-4 my-5">
+      <h2 class="cart-title col-12 col-md-2">購物車</h2>
+      <!-- 流程 -->
+      <div class="cart-step col-12 col-md-10">
+        <div class="box current">
+          <span class="deco">STEP1</span>購物車
+        </div>
+        <div class="box">
+          <span class="deco">STEP2</span>訂購資訊
+        </div>
+        <div class="box">
+          <span class="deco">STEP3</span>確認付款
+        </div>
       </div>
     </div>
 
     <div class="row">
       <div class="col-12 col-lg-7">
         <!-- 購物車 -->
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center mb-4">
           <h5>購物清單</h5>
           <button class="btn btn-outline-danger"
           type="button"
@@ -43,7 +29,7 @@
         </div>
         <div v-if="this.cartList.carts && this.cartList.carts.length > 0">
           <table class="table align-middle">
-            <thead>
+            <thead class="table-dark">
               <tr>
                 <th></th>
                 <th>圖片</th>

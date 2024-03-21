@@ -1,5 +1,6 @@
 <template>
-  <div class="container g-wrapper">
+  <div class="order__finish">
+    <div class="container g-wrapper">
       <div class="text-center">
         <i class="bi bi-bag-check text-primary fs-80"></i>
         <h3>感謝您的購買，已完成訂單!</h3>
@@ -7,5 +8,6 @@
         <RouterLink to="/products" class="btn btn-primary text-white">
           再逛逛其它商品</RouterLink>
       </div>
+    </div>
   </div>
 </template>

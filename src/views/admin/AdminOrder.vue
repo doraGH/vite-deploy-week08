@@ -27,7 +27,7 @@
             <td>{{ item.id }}</td>
             <td>NT$ {{ item.total }}</td>
             <td>
-              <span :class="{'text-success': item.is_paid}">
+              <span :class="{'text-primary': !item.is_paid}">
               {{ item.is_paid ? '已付款' : '未付款' }}</span>
             </td>
             <td>

@@ -40,10 +40,6 @@
                 <span>特價 {{ item.price }} 元</span>
               </p>
               <div class="btn-group btn-group-sm d-flex">
-                <!-- <RouterLink :to="`/product-view/${item.id}`"
-                class="btn btn-outline-secondary">
-                  查看更多
-                </RouterLink> -->
                 <button type="button" class="btn btn-outline-danger"
                 :disabled="item.id === status.loadCart"
                 @click.prevent="addCart(item.id)">
@@ -55,31 +51,6 @@
             </div>
           </div>
 
-          <!-- <div class="card">
-            <div class="card-image">
-              <img :src="item.imageUrl" class="card-img-top" alt="圖片">
-            </div>
-            <div class="card-body">
-              <h6 class="card-title">{{ item.title }}</h6>
-              <p class="card-text">
-                <del>原價 {{ item.origin_price }} 元</del> /
-                <span>特價 {{ item.price }} 元</span>
-              </p>
-              <div class="btn-group btn-group-sm d-flex">
-                <RouterLink :to="`/product-view/${item.id}`"
-                class="btn btn-outline-secondary">
-                  查看更多
-                </RouterLink>
-                <button type="button" class="btn btn-outline-danger"
-                :disabled="item.id === status.loadCart"
-                @click.prevent="addCart(item.id)">
-                <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse
-                v-if="item.id === status.loadCart" />
-                  加到購物車
-                </button>
-              </div>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
