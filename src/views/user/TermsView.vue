@@ -2,7 +2,7 @@
   <div class="banner-term d-felx justify-content-center align-items-center">
   </div>
   <div class="container story">
-    <h2 class="text-center mb-5">商品購買須知</h2>
+    <h2 class="text-center mb-5">購買須知</h2>
     <p>
       親愛的顧客，您好：<br>
       感謝您對SweetHouse的支持與愛護。麻煩您閱讀網路商店購物須知，以了解購物方式與服務內容。

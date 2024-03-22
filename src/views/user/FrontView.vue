@@ -31,12 +31,12 @@
           <button
             class="navbar-toggler d-flex d-md-none flex-column justify-content-around"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
             aria-label="Toggle navigation"
-            :class="{ collapsed: btnState }" @click="btnState = !btnState">
+            :class="{ collapsed: btnState }" @click="btnState = !btnState"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample"
+            aria-controls="offcanvasExample"
+            >
             <span class="toggler-icon top-bar"></span>
             <span class="toggler-icon middle-bar"></span>
             <span class="toggler-icon bottom-bar"></span>
@@ -73,9 +73,11 @@
   :carts="cartList.carts"
   :total="cartList.total"
   :status="status.loadQty"
+  :carts-length="cartsLengthComputed"
   @remove-cart="removeCartItem"
   @update-cart="updateCart"
   ></CartOffcanvas>
+  <!-- <CartOffcanvas ref="cartModal"></CartOffcanvas> -->
 
   <RouterView></RouterView>
 
@@ -139,7 +141,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(cartStore, ['cartList', 'status']),
+    ...mapState(cartStore, ['cartList', 'status', 'cartsLengthComputed']),
   },
   methods: {
     ...mapActions(cartStore, [
@@ -162,8 +164,9 @@ export default {
       this.isNotHome = this.$route.fullPath !== '/';
     },
     // 開關側欄購物車
-    // changeSideCart() {
-    //   this.$refs.cartModal.openModal();
+    // hideCart() {
+    //   // this.$ref.cartModal.classList.remove('show');
+    //   this.$ref.cartModal.hideModal();
     // },
   },
   mounted() {

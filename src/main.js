@@ -55,7 +55,7 @@ app.use(router);
 
 // 吐司套件
 app.use(Vue3Toasity, {
-  autoClose: 2000, // 自動關閉時間
+  autoClose: 500, // 自動關閉時間
   position: toast.POSITION.TOP_CENTER, // 提示窗位置
   toastStyle: {
     fontSize: '12px',

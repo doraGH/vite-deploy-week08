@@ -1,11 +1,10 @@
 <template>
-  <div class="offcanvas offcanvas-end right-cart" ref="cartModal"
-  tabindex="-1" id="offcanvasExample">
+  <div class="offcanvas offcanvas-end right-cart" tabindex="-1" ref="cartModal"
+  id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header border-bottom">
-      <h5 class="offcanvas-title">您的購物車</h5>
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">您的購物車</h5>
       <button type="button" class="btn-close text-reset"
-      data-bs-dismiss="offcanvas" aria-label="Close"
-      ></button>
+      data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body p-3">
       <div class="flex-column mb-auto">
@@ -32,40 +31,31 @@
         <p>小計：</p>
         <p>NT$ <span>{{ total }}</span></p>
       </div>
-      <RouterLink to="/cart" class="btn btn-primary"
-      @click="hideModal"
-      >繼續結帳</RouterLink>
+      <button type="button" class="btn btn-primary"
+      data-bs-dismiss="offcanvas"
+      v-if="cartsLength > 0"
+      @click="goToCart"
+      >前往結帳</button>
+      <button type="button" v-else
+      data-bs-dismiss="offcanvas"
+      class="btn btn-secondary text-white w-100"
+      @click="goToShop">
+          繼續購物</button>
     </div>
   </div>
-
-  <!-- 遮罩层 -->
-  <div v-if="showBackdrop" class="offcanvas-backdrop fade show"></div>
 </template>
 
 <script>
-import Offcanvas from 'bootstrap/js/dist/offcanvas';
-
 export default {
-  data() {
-    return {
-      bsOffcanvas: null,
-      showBackdrop: false,
-    };
-  },
-  props: ['status', 'carts', 'total'],
+  props: ['status', 'carts', 'total', 'cartsLength'],
   emits: ['remove-cart', 'update-cart'],
   methods: {
-    openModal() {
-      this.showBackdrop = true;
-      this.bsOffcanvas.show();
+    goToCart() {
+      this.$router.push('/cart');
     },
-    hideModal() {
-      this.showBackdrop = false;
-      this.bsOffcanvas.hide();
+    goToShop() {
+      this.$router.push('/products');
     },
-  },
-  mounted() {
-    this.bsOffcanvas = new Offcanvas(this.$refs.cartModal);
   },
 };
 </script>

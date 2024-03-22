@@ -80,10 +80,6 @@
               <p>小計：</p>
               <p>NT$ <span class="text-notoSans">{{ cartList.total }}</span></p>
             </div>
-            <!-- <div class="d-flex justify-content-between">
-              <p>運費：</p>
-              <p>NT$ <span class="text-notoSans">50</span></p>
-            </div> -->
             <div class="d-flex justify-content-between mb-4">
               <p class="text-nowrap">優惠碼：</p>
               <div class="d-flex justify-content-end">
@@ -110,7 +106,7 @@
           class="btn btn-primary text-white w-100"
           v-if="cartsLengthComputed > 0">下一步</RouterLink>
           <RouterLink to="/products" v-else class="btn btn-secondary text-white w-100">
-            將商品加入購物車</RouterLink>
+            前往購物</RouterLink>
         </div>
       </div>
     </div>
