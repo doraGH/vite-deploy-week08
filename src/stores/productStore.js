@@ -43,7 +43,7 @@ export default defineStore('productStore', {
           Swal.fire(error.response.data.message);
         });
     },
-    // 取得單一產品，並且要開起modal
+    // 取得單一產品
     getProductItem(id) {
       const url = `${VITE_URL}/api/${VITE_PATH}/product/${id}`;
       this.loadItem = id;
@@ -53,11 +53,9 @@ export default defineStore('productStore', {
           const { product } = response.data;
           this.loadItem = '';
           this.productItem = product;
-          // this.$refs.modal.openModal();
         })
         .catch((error) => {
           Swal.fire(error.response.data.message);
-          // console.log(error);
         });
     },
   },

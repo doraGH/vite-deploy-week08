@@ -8,6 +8,8 @@ const { VITE_URL, VITE_PATH } = import.meta.env;
 export default defineStore('cartStore', {
   state: () => ({
     cartList: {},
+    carts: {},
+    total: 0,
     isLoading: false,
     status: {
       loadCart: '',
@@ -47,7 +49,8 @@ export default defineStore('cartStore', {
           const { data } = response.data;
           this.isLoading = false;
           this.cartList = data;
-          // console.log(response);
+          this.carts = data.carts;
+          this.total = data.total;
         })
         .catch((error) => {
           Swal.fire(error.response.data.message);

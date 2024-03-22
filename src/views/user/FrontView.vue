@@ -15,8 +15,10 @@
           class="btn btn-sm">
             <img src="../../assets/images/user.svg">
           </RouterLink>
-          <RouterLink to="/cart"
-          class="btn btn-sm position-relative me-4">
+          <a href="#" @click="openSideCart"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"
+            class="btn btn-sm position-relative me-4">
             <img src="../../assets/images/cart.svg" class="position-relative">
             <span class="position-absolute top-0
             start-100 translate-middle badge rounded-pill bg-danger"
@@ -25,7 +27,7 @@
             {{ cartList.carts.length }}
               <span class="visually-hidden">unread messages</span>
             </span>
-          </RouterLink>
+          </a>
           <button
             class="navbar-toggler d-flex d-md-none flex-column justify-content-around"
             type="button"
@@ -66,6 +68,15 @@
   </header>
   <div class="cover" :class="{show: !btnState}" :aria-expanded="String(btnState)"></div>
 
+  <!-- 側欄購物車 -->
+  <CartOffcanvas ref="cartModal"
+  :carts="cartList.carts"
+  :total="cartList.total"
+  :status="status.loadQty"
+  @remove-cart="removeCartItem"
+  @update-cart="updateCart"
+  ></CartOffcanvas>
+
   <RouterView></RouterView>
 
   <footer class="footer">
@@ -105,6 +116,7 @@
 <script>
 import { mapActions, mapState } from 'pinia';
 import cartStore from '@/stores/cartStore'; // @ => /src
+import CartOffcanvas from '@/components/CartOffcanvasl.vue';
 
 export default {
   data() {
@@ -115,6 +127,9 @@ export default {
       isNotHome: false, // 不是首頁
     };
   },
+  components: {
+    CartOffcanvas,
+  },
   watch: {
     // 路由改變,重新設置隱藏與按鈕狀態
     $route() {
@@ -124,10 +139,14 @@ export default {
     },
   },
   computed: {
-    ...mapState(cartStore, ['cartList']),
+    ...mapState(cartStore, ['cartList', 'status']),
   },
   methods: {
-    ...mapActions(cartStore, ['getCarts']),
+    ...mapActions(cartStore, [
+      'getCarts',
+      'removeCartItem',
+      'updateCart',
+    ]),
 
     // 切換小尺寸選單狀態
     closeNavbar() {
@@ -142,6 +161,10 @@ export default {
     checkHomePage() {
       this.isNotHome = this.$route.fullPath !== '/';
     },
+    // 開關側欄購物車
+    // changeSideCart() {
+    //   this.$refs.cartModal.openModal();
+    // },
   },
   mounted() {
     // dom生成時掛載監聽事件

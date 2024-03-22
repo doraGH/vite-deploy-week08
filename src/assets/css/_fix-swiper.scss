@@ -37,3 +37,35 @@
 }
 
 
+/* swiper 數量不足對應 */
+@media (min-width: 768px) {
+  .swiper-slide {
+    min-width: 204px;
+    min-height: 224px;
+  }
+}
+@media (min-width: 992px) {
+  .swiper-slide {
+    min-width: 150px;
+    min-height: 165px;
+  }
+}
+@media (min-width: 1200px) {
+  .swiper-slide {
+    min-width: 188px;
+    min-height: 206px;
+  }
+}
+@media (min-width: 1400px) {
+  .swiper-slide {
+    min-width: 225px;
+    min-height: 248px;
+  }
+}
+@media (min-width: 1580px) {
+  .swiper-slide {
+    min-width: 258px;
+    min-height: 290px;
+  }
+}
+

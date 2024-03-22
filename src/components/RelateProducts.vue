@@ -2,43 +2,43 @@
   <div class="iproducts">
     <div class="container">
       <div class="swiper-wrapper">
-          <swiper ref="relateSwiper"
-            :modules="modules"
-            :slidesPerGroup="1"
-            :slidesPerView="2"
-            :spaceBetween="20"
-            :loop="false"
-            :autoplay="{ delay: 6000, disableOnInteraction: false }"
-            :pagination="{
-              el: '.custom-pagination', // 指定分頁元素
-              clickable: true
-              }"
-            :breakpoints="{
-              768: {
-                slidesPerView: 3,
-                spaceBetween: 30,
-              },
-              992: {
-                slidesPerView: 4,
-                spaceBetween: 50,
-              },
+        <swiper ref="relateSwiper"
+          :modules="modules"
+          :slidesPerGroup="1"
+          :slidesPerView="2"
+          :spaceBetween="20"
+          :loop="false"
+          :autoplay="{ delay: 6000, disableOnInteraction: false }"
+          :pagination="{
+            el: '.custom-pagination', // 指定分頁元素
+            clickable: true
             }"
-            >
-            <swiper-slide v-for="item in filteredItems" :key="item.id">
-              <a href="#" @click.prevent="getDetail(item.id)"
-              class="item_cont">
-                <div class="item_cont-image">
-                  <img :src="item.imageUrl" alt="圖片">
-                </div>
-                <div class="item_cont-text">
-                  <div class="tibox">{{ item.title }}</div>
-                  ${{ item.price }}
-                </div>
-              </a>
-            </swiper-slide>
-          </swiper>
-        </div>
-        <div class="custom-pagination"></div>
+          :breakpoints="{
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            992: {
+              slidesPerView: 4,
+              spaceBetween: 50,
+            },
+          }"
+          >
+          <swiper-slide v-for="item in filteredItems" :key="item.id">
+            <a href="#" @click.prevent="getDetail(item.id)"
+            class="item_cont">
+              <div class="item_cont-image">
+                <img :src="item.imageUrl" alt="圖片">
+              </div>
+              <div class="item_cont-text">
+                <div class="tibox">{{ item.title }}</div>
+                ${{ item.price }}
+              </div>
+            </a>
+          </swiper-slide>
+        </swiper>
+      </div>
+      <div class="custom-pagination"></div>
     </div>
   </div>
 </template>
@@ -92,6 +92,7 @@ export default {
         behavior: 'smooth',
       });
     },
+
   },
   mounted() {
     this.getAllProducts();
