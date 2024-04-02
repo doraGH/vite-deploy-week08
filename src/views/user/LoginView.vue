@@ -25,7 +25,6 @@
 </template>
 
 <script>
-// import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const { VITE_URL } = import.meta.env;

@@ -43,7 +43,6 @@ export default {
           this.$router.push('/login');
         })
         .catch(() => {
-          // Swal.fire(error.response.data.message);
           Swal.fire('請重新登入');
           this.$router.push('/login');
         });

@@ -56,11 +56,6 @@
     @update-temp-product="handleUpdateTempProduct">
   </ProductModal>
 
-  <!-- Modal 刪除彈跳視窗 -->
-  <!-- <DelModal
-  ref="delModal"
-  :item="tempProduct"
-  @del-item="deleteProduct"></DelModal> -->
 </template>
 
 <script>
@@ -69,7 +64,6 @@ import { toast } from 'vue3-toastify';
 
 import PaginationComponent from '@/components/PaginationComponent.vue';
 import ProductModal from '@/components/ProductModal.vue';
-// import DelModal from '@/components/DelModal.vue';
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
@@ -141,7 +135,6 @@ export default {
             .delete(url)
             .then((response) => {
               toast.success(response.data.message);
-              // this.$refs.delModal.hideModal();
               this.getProducts();
             })
             .catch((error) => {

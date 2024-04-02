@@ -158,7 +158,6 @@ export default {
           toast.error(error.response.data.message);
         })
         .finally(() => {
-          // 關閉 loading
           this.isLoading = false;
         });
     },
@@ -177,7 +176,6 @@ export default {
           Swal.fire(error.response.data.message);
         })
         .finally(() => {
-          // 關閉 loading
           this.isLoading = false;
         });
     },

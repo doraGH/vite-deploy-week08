@@ -57,11 +57,6 @@
     @update-order="getOrders">
   </OrderModal>
 
-  <!-- Modal 刪除彈跳視窗 -->
-  <!-- <DelModal
-  ref="delModal"
-  :item="tempOrder"
-  @del-item="delOneOrder"></DelModal> -->
 </template>
 
 <script>
@@ -70,7 +65,6 @@ import { toast } from 'vue3-toastify';
 
 import PaginationComponent from '@/components/PaginationComponent.vue';
 import OrderModal from '@/components/OrderModal.vue';
-// import DelModal from '@/components/DelModal.vue';
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
 

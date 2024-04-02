@@ -91,7 +91,7 @@ export default {
     },
     // 切換頁面時,將分類及page重新代入
     changePage(page) {
-      const category = this.$route.query.category || ''; // 使用預設值
+      const category = this.$route.query.category || '';
       this.getProducts(category, page);
       if (category === '') {
         this.$router.push('/products');

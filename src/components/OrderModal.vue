@@ -35,8 +35,6 @@
               <tr>
                 <th>付款狀態</th>
                 <td>
-                  <!-- <strong v-if="tempOrder.data.is_paid" class="text-success">已付款</strong>
-                  <span v-else class="text-muted">尚未付款</span> -->
                   <div class="form-check">
                     <input class="form-check-input"
                     type="checkbox"
@@ -124,7 +122,6 @@
 
 <script>
 import modalMixin from '@/mixins/modalMixin';
-// import Swal from 'sweetalert2';
 import { toast } from 'vue3-toastify';
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
@@ -138,7 +135,6 @@ export default {
       editOrder: {
         data: {},
       }, // 有修改內容資料時向外傳遞使用
-      // isPaid: false,
     };
   },
   mounted() {

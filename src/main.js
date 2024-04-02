@@ -35,11 +35,10 @@ Object.keys(AllRules).forEach((rule) => {
 });
 
 configure({
-  generateMessage: localize({ zh_TW: zhTW }), // 載入繁體中文語系
-  validateOnInput: true, // 當輸入任何內容直接進行驗證
+  generateMessage: localize({ zh_TW: zhTW }),
+  validateOnInput: true,
 });
 
-// 設定預設語系
 setLocale('zh_TW');
 
 const app = createApp(App);
@@ -53,10 +52,9 @@ app.use(VueAxios, axios);
 app.use(createPinia());
 app.use(router);
 
-// 吐司套件
 app.use(Vue3Toasity, {
-  autoClose: 500, // 自動關閉時間
-  position: toast.POSITION.TOP_CENTER, // 提示窗位置
+  autoClose: 500,
+  position: toast.POSITION.TOP_CENTER,
   toastStyle: {
     fontSize: '12px',
     minHeight: '50px',

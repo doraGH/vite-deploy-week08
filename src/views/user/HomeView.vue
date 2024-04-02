@@ -25,7 +25,7 @@
           :modules="modules"
           :navigation="false"
           :pagination="{
-            el: '.custom-pagination', // 指定分頁元素
+            el: '.custom-pagination',
             clickable: true
             }"
           :breakpoints="{
@@ -192,8 +192,6 @@ export default {
     // 取得前10筆產品
     getDisplayedProducts() {
       return this.products.slice(0, 9);
-      // 或者你可以使用过滤器来过滤特定的category
-      // return this.products.filter(item => item.category === '特定category');
     },
   },
 

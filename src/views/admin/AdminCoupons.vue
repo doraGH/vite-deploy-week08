@@ -175,7 +175,6 @@ export default {
         if (result.isConfirmed) {
           this.axios.delete(url)
             .then((response) => {
-              // this.$refs.delModal.hideModal();
               this.getCoupons();
               toast.success(response.data.message);
             })

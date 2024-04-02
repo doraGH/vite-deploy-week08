@@ -6,7 +6,6 @@
 </template>
 
 <script>
-// import Swal from 'sweetalert2';
 import { toast } from 'vue3-toastify';
 
 import AdminNavbar from '@/components/AdminNavbar.vue';

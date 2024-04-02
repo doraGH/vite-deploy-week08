@@ -163,11 +163,6 @@ export default {
     checkHomePage() {
       this.isNotHome = this.$route.fullPath !== '/';
     },
-    // 開關側欄購物車
-    // hideCart() {
-    //   // this.$ref.cartModal.classList.remove('show');
-    //   this.$ref.cartModal.hideModal();
-    // },
   },
   mounted() {
     // dom生成時掛載監聽事件

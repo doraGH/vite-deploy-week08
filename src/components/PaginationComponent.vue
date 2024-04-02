@@ -29,7 +29,6 @@ export default {
   props: ['pages'],
   methods: {
     changePage(num) {
-      // console.log(num);  // 測試點擊是否有作用
       this.$emit('change-page', num);
     },
   },

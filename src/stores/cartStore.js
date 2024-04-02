@@ -30,7 +30,6 @@ export default defineStore('cartStore', {
       axios
         .post(url, myCart)
         .then((response) => {
-          // this.$refs.modal.hideModal();
           this.status.loadCart = '';
           this.getCarts();
           toast.success(response.data.message);
@@ -106,7 +105,6 @@ export default defineStore('cartStore', {
       axios
         .put(url, cart)
         .then(() => {
-          // Swal.fire(response.data.message);
           this.status.loadQty = '';
           this.getCarts();
         })
@@ -132,7 +130,6 @@ export default defineStore('cartStore', {
         const { coupon } = this.cartList.carts[0];
         if (coupon && totalPrice >= 500) {
           // 如果有折扣且總金額>=500，將折扣金額扣除
-          // console.log(totalPrice - coupon.percent);
           return totalPrice - coupon.percent; // 假設 coupon.percent 是折扣金額
         }
         // 如果沒有折扣但總金額>=500，則返回原始總金額
