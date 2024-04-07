@@ -16,7 +16,7 @@
                 aria-current="page">{{ product.title }}</li>
           </ol>
         </nav>
-        <div class="row my-5">
+        <div class="row my-5 d-flex align-items-end">
           <div class="col-md-5">
             <div class="procard__detail">
               <div class="procard__detail-image">
@@ -52,8 +52,6 @@
               </div>
               <button type="button"
                 class="btn btn-primary w-50"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasExample"
                 aria-controls="offcanvasExample"
                 @click.prevent="addCart(product.id, qty)"
                 :disabled="product.id === status.loadCart">
@@ -113,7 +111,6 @@ export default {
           toast.error(error.response.data.message);
         })
         .finally(() => {
-          // 關閉 loading
           this.isLoading = false;
         });
     },

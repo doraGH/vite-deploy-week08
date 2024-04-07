@@ -117,11 +117,12 @@
 
 <script>
 import { toast } from 'vue3-toastify';
-import Swal from 'sweetalert2';
+import sweetAlertMixin from '@/mixins/sweetAlertMixin';
 import CreditCard from '@/components/CreditCard.vue';
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
 export default {
+  mixins: [sweetAlertMixin],
   data() {
     return {
       order: {},
@@ -173,7 +174,7 @@ export default {
           this.$router.push('/orderfinish');
         })
         .catch((error) => {
-          Swal.fire(error.response.data.message);
+          this.errorAlert(error.response.data.message);
         })
         .finally(() => {
           this.isLoading = false;

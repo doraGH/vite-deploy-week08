@@ -10,7 +10,7 @@
 
     <label for="validDate" class="form-label">有效年月
       <span class="text-danger">*</span></label>
-    <VField id="validDate" name="validDate" type="month" class="form-control border-gray"
+    <VField id="validDate" name="validDate" type="date" class="form-control border-gray"
       :class="{ 'is-invalid': errors['validDate'] }" :rules="validDate"></VField>
     <ErrorMessage name="validDate" class="invalid-feedback"></ErrorMessage>
 

@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import Swal from 'sweetalert2';
+import sweetAlertMixin from '@/mixins/sweetAlertMixin';
 import { toast } from 'vue3-toastify';
 
 import PaginationComponent from '@/components/PaginationComponent.vue';
@@ -69,6 +69,7 @@ import OrderModal from '@/components/OrderModal.vue';
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
 export default {
+  mixins: [sweetAlertMixin],
   data() {
     return {
       orders: [],
@@ -82,7 +83,6 @@ export default {
   components: {
     PaginationComponent,
     OrderModal,
-    // DelModal,
   },
   methods: {
     // 取得訂單
@@ -110,12 +110,14 @@ export default {
     // 取消單一訂單
     delOneOrder(id) {
       const url = `${VITE_URL}/api/${VITE_PATH}/admin/order/${id}`;
-      Swal.fire({
-        title: '確定要刪除訂單嗎?',
-        showDenyButton: true,
-        confirmButtonText: '是，我要刪除',
-        denyButtonText: '不要刪除',
-      }).then((result) => {
+      this.showAlert(
+        '確定要刪除訂單嗎?',
+        {
+          showDenyButton: true,
+          confirmButtonText: '是，我要刪除',
+          denyButtonText: '不要刪除',
+        },
+      ).then((result) => {
         if (result.isConfirmed) {
           this.axios
             .delete(url, id).then((response) => {
@@ -131,18 +133,20 @@ export default {
     // 取消全部訂單
     delAllOrder() {
       const url = `${VITE_URL}/api/${VITE_PATH}/admin/orders/all`;
-      Swal.fire({
-        title: '確定要清空<span class="text-danger">全部</span>訂單嗎?',
-        showDenyButton: true,
-        confirmButtonText: '是，我要刪除',
-        denyButtonText: '不要刪除',
-      }).then((result) => {
+      this.showAlert(
+        '確定要清空<span class="text-danger">全部</span>訂單嗎?',
+        {
+          showDenyButton: true,
+          confirmButtonText: '是，我要刪除',
+          denyButtonText: '不要刪除',
+        },
+      ).then((result) => {
         if (result.isConfirmed) {
           this.axios
             .delete(url).then((response) => {
               toast.success(response.data.message);
               this.getOrders();
-              Swal.fire('您已刪除全部訂單');
+              this.successAlert('您已刪除全部訂單');
             })
             .catch((error) => {
               toast.error(error.response.data.message);

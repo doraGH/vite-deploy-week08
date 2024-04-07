@@ -89,7 +89,8 @@
           <!-- 驗證表單 -->
           <VForm @submit="createOrder" ref="form" v-slot="{ errors }">
             <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
+              <label for="email" class="form-label">Email
+                <span class="text-danger">*</span></label>
               <VField type="email" class="form-control" id="email" name="email"
                 placeholder="請輸入Email"
                 :class="{'is-invalid':errors['email']}"
@@ -98,7 +99,8 @@
               <ErrorMessage class="invalid-feedback" name="email" />
             </div>
             <div class="mb-3">
-              <label for="name" class="form-label">收件人姓名</label>
+              <label for="name" class="form-label">收件人姓名
+                <span class="text-danger">*</span></label>
               <VField type="text" class="form-control" id="name" name="姓名" placeholder="請輸入姓名"
                 :class="{'is-invalid':errors['姓名']}"
                 rules="required"
@@ -106,7 +108,8 @@
               <ErrorMessage class="invalid-feedback" name="姓名" />
             </div>
             <div class="mb-3">
-              <label for="tel" class="form-label">收件人電話</label>
+              <label for="tel" class="form-label">收件人電話
+                <span class="text-danger">*</span></label>
               <VField type="text" class="form-control" id="tel" name="tel"
               placeholder="請輸入電話: 09xxxxxxxxx"
                 :class="{'is-invalid':errors['tel']}"
@@ -115,7 +118,8 @@
               <ErrorMessage class="invalid-feedback" name="tel" />
             </div>
             <div class="mb-3">
-              <label for="address" class="form-label">收件人地址</label>
+              <label for="address" class="form-label">收件人地址
+                <span class="text-danger">*</span></label>
               <VField type="text"
                 class="form-control"
                 id="address"
@@ -143,12 +147,13 @@
 
 <script>
 import { toast } from 'vue3-toastify';
-import Swal from 'sweetalert2';
+import sweetAlertMixin from '@/mixins/sweetAlertMixin';
 import { mapActions, mapState } from 'pinia';
 import cartStore from '@/stores/cartStore';
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
 export default {
+  mixins: [sweetAlertMixin],
   data() {
     return {
       form: {
@@ -192,7 +197,7 @@ export default {
           this.$router.push(`/payment/${response.data.orderId}`);
         })
         .catch((error) => {
-          Swal.fire(error.response.data.message);
+          this.errorAlert(error.response.data.message);
         });
     },
   },

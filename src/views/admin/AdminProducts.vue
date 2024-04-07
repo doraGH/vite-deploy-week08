@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import Swal from 'sweetalert2';
+import sweetAlertMixin from '@/mixins/sweetAlertMixin';
 import { toast } from 'vue3-toastify';
 
 import PaginationComponent from '@/components/PaginationComponent.vue';
@@ -68,6 +68,7 @@ import ProductModal from '@/components/ProductModal.vue';
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
 export default {
+  mixins: [sweetAlertMixin],
   data() {
     return {
       products: [],
@@ -124,12 +125,14 @@ export default {
     // 刪除單一產品
     deleteProduct(item) {
       const url = `${VITE_URL}/api/${VITE_PATH}/admin/product/${item.id}`;
-      Swal.fire({
-        title: `確定要刪除<span class="text-danger">${item.title}</span>嗎?`,
-        showDenyButton: true,
-        confirmButtonText: '是，我要刪除',
-        denyButtonText: '不要刪除',
-      }).then((result) => {
+      this.showAlert(
+        `確定要刪除<span class="text-danger">${item.title}</span>嗎?`,
+        {
+          showDenyButton: true,
+          confirmButtonText: '是，我要刪除',
+          denyButtonText: '不要刪除',
+        },
+      ).then((result) => {
         if (result.isConfirmed) {
           this.axios
             .delete(url)

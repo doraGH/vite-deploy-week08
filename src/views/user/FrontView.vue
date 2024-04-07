@@ -22,7 +22,7 @@
             <img src="../../assets/images/cart.svg" class="position-relative">
             <span class="position-absolute top-0
             start-100 translate-middle badge rounded-pill bg-danger"
-            v-if="cartList.carts">
+            v-if="cartList.carts && cartList.carts.length > 0">
             <!-- v-if 當頁面刷新時，先檢查cartList是否存在,否則會出錯 -->
             {{ cartList.carts.length }}
               <span class="visually-hidden">unread messages</span>
@@ -77,7 +77,6 @@
   @remove-cart="removeCartItem"
   @update-cart="updateCart"
   ></CartOffcanvas>
-  <!-- <CartOffcanvas ref="cartModal"></CartOffcanvas> -->
 
   <RouterView></RouterView>
 

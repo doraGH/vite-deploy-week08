@@ -157,14 +157,14 @@
 
 <script>
 import modalMixin from '@/mixins/modalMixin';
-import Swal from 'sweetalert2';
+import sweetAlertMixin from '@/mixins/sweetAlertMixin';
 import { toast } from 'vue3-toastify';
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
 
 export default {
   props: ['isNew', 'tempProduct'],
-  mixins: [modalMixin],
+  mixins: [modalMixin, sweetAlertMixin],
   data() {
     return {
       editProduct: {
@@ -213,7 +213,7 @@ export default {
 
           // 使用對應表轉換錯誤訊息中的欄位名稱
           errorMessage = errorMessage.replace(/(\w+) 欄位/g, (match, p1) => `${this.fieldTranslation[p1] || p1} 欄位`);
-          Swal.fire(errorMessage);
+          this.infoAlert(errorMessage);
         });
     },
     // 上傳圖片

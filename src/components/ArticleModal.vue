@@ -119,7 +119,7 @@
 
 <script>
 import modalMixin from '@/mixins/modalMixin';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default {
   props: ['isNew', 'tempArticle'],
@@ -136,7 +136,7 @@ export default {
       },
       create_at: '', // 保存日期
       // CKEditor 編輯器
-      editor: ClassicEditor,
+      // editor: ClassicEditor,
       editorConfig: {
         toolbar: ['heading', 'bold', 'italic', '|', 'link'],
       },
@@ -170,7 +170,7 @@ export default {
     },
     // add tag
     addTag() {
-      console.log(this.tempArticle.data.tag);
+      // console.log(this.tempArticle.data.tag);
       if (this.newTag.trim() !== '') {
         this.tags.push(this.newTag.trim());
         this.newTag = '';

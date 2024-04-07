@@ -41,8 +41,6 @@
               </p>
               <div class="btn-group btn-group-sm d-flex">
                 <button type="button" class="btn btn-outline-danger"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasExample"
                 :disabled="item.id === status.loadCart"
                 @click.prevent="addCart(item.id)">
                 <font-awesome-icon :icon="['fas', 'spinner']" spin-pulse

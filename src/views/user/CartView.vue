@@ -115,13 +115,14 @@
 
 <script>
 import { toast } from 'vue3-toastify';
-import Swal from 'sweetalert2';
+import sweetAlertMixin from '@/mixins/sweetAlertMixin';
 import { mapActions, mapState } from 'pinia';
 
 import cartStore from '@/stores/cartStore';
 
 const { VITE_URL, VITE_PATH } = import.meta.env;
 export default {
+  mixins: [sweetAlertMixin],
   data() {
     return {
       couponCode: '',
@@ -154,12 +155,12 @@ export default {
             this.getCarts();
           })
           .catch((error) => {
-            Swal.fire(error.response.data.message);
+            this.errorAlert(error.response.data.message);
             this.couponCode = '';
           });
       } else {
         // 不使用優惠卷
-        Swal.fire('總額不足500元,不能使用喔!');
+        this.warningAlert('總額不足500元,不能使用喔!');
         this.couponCode = '';
       }
     },

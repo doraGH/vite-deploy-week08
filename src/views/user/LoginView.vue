@@ -25,11 +25,12 @@
 </template>
 
 <script>
-import Swal from 'sweetalert2';
+import sweetAlertMixin from '@/mixins/sweetAlertMixin';
 
 const { VITE_URL } = import.meta.env;
 
 export default {
+  mixins: [sweetAlertMixin],
   data() {
     return {
       user: {
@@ -49,7 +50,7 @@ export default {
           this.$router.push('/admin/products');
         })
         .catch((error) => {
-          Swal.fire(error.response.data.message);
+          this.errorAlert(error.response.data.message);
         });
     },
   },

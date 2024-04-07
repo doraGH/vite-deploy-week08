@@ -29,21 +29,22 @@
   </nav>
 </template>
 <script>
-import Swal from 'sweetalert2';
+import sweetAlertMixin from '@/mixins/sweetAlertMixin';
 
 const { VITE_URL } = import.meta.env;
 export default {
+  mixins: [sweetAlertMixin],
   methods: {
     // 登出
     logout() {
       this.axios.post(`${VITE_URL}/logout`)
         .then(() => {
-          Swal.fire('您已成功登出');
+          this.successAlert('您已成功登出');
           document.cookie = 'hexToken=; expires=; path=/';
           this.$router.push('/login');
         })
         .catch(() => {
-          Swal.fire('請重新登入');
+          this.warningAlert('請重新登入');
           this.$router.push('/login');
         });
     },
